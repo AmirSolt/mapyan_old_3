@@ -3,10 +3,10 @@
     export let product:any; 
     import StarRating from "$lib/comp/general/product/StarRating.svelte";
     import {selectedProducts} from '$lib/utils/stores'
-    import {NumberOfCompareProducts} from '$lib/utils/config';
+    import {MaxCompareProducts} from '$lib/utils/config';
 
     $: thisInSelecteds = $selectedProducts.find((item) => item.asin === product.asin);
-    $: reachedMaxSelected =  $selectedProducts.length>=NumberOfCompareProducts;
+    $: reachedMaxSelected =  $selectedProducts.length>=MaxCompareProducts;
 
 
 

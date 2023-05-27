@@ -7,7 +7,7 @@
 	export let products:any[] = [];
 
     import {selectedProducts, userCountry} from '$lib/utils/stores'
-    import {NumberOfCompareProducts} from '$lib/utils/config';
+    import {MaxCompareProducts} from '$lib/utils/config';
 
 
 
@@ -19,7 +19,7 @@
 
     function addToSelected(product){
         selectedProducts.update((list)=>{
-            if(list.length>=NumberOfCompareProducts){
+            if(list.length>=MaxCompareProducts){
                 return list;
             }
             loadInputData(product.asin)

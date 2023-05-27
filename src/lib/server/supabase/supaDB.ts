@@ -7,7 +7,7 @@ import {error} from '@sveltejs/kit'
 
 
 
-export async function getTable(tableKey:string){
+export async function getTableData(tableKey:string){
 
     const {data, error:err} = await supabaseService
         .from('tables')
@@ -18,8 +18,10 @@ export async function getTable(tableKey:string){
         throw error(400, `DB issue: ${err}`)
     }
 
+    if(data.length == 0)
+        return undefined
 
-    return data
+    return data[0].tableData
 }
 
 

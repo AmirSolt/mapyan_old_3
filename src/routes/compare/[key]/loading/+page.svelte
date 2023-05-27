@@ -3,6 +3,8 @@
 
 
     import LoadingAnim from '$lib/comp/general/LoadingAnim.svelte';
+    import CompareLoading from '$lib/comp/compare/CompareLoading.svelte';
+
     import {goto} from '$app/navigation';
     import { onMount } from 'svelte';
 
@@ -13,8 +15,10 @@
 </script>
 
 <div class="h-full flex flex-col justify-start items-center">
-    <div class="p-24"></div>
+    <div class="p-12"></div>
     <LoadingAnim />
+    <br>
+    <CompareLoading />
 </div>
 
 <!-- HCaptcha -->

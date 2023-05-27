@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ProductAvatar from '$lib/components/products/ui/ProductAvatar.svelte';
-	import StarRating from '$lib/components/products/ui/StarRating.svelte';
+	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
+	import StarRating from '$lib/comp/general/product/StarRating.svelte';
 	import {CornerUpRight} from 'lucide-svelte'
 
 	export let tableData: any[] = [];
@@ -37,6 +37,20 @@
 	{/each}
 </tr>
 
+
+<tr>
+	<th class="">Brand</th>
+	{#each tableData as colData}
+		<td class="text-center">
+			<div class="">
+				<span>
+					{colData.brand}
+				</span>
+			</div>
+		</td>
+	{/each}
+</tr>
+
 <tr>
 	<th class="">Ratings</th>
 	{#each tableData as colData}
@@ -55,7 +69,7 @@
 		<td class="text-center">
 			<div class="">
 				<span>
-					{colData.price_raw}
+					{colData.price}
 				</span>
 			</div>
 		</td>

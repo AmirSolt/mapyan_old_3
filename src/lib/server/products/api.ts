@@ -33,7 +33,7 @@ export async function getProductInfo( asin:string, country:string){
 
     // ============= fetch =============================
     const domain = countryToDomain(country)
-    let productInfo = amazonAPI.getProductInfo(asin, domain)
+    let productInfo = await amazonAPI.getProductInfo(asin, domain)
     const tempProduct = productInfo["product"]
     let reviews = [];
     if("top_reviews" in tempProduct){
@@ -44,7 +44,7 @@ export async function getProductInfo( asin:string, country:string){
     let price = "";
     if("buybox_winner"in tempProduct && "price" in tempProduct["buybox_winner"]){
         const priceObj = tempProduct["buybox_winner"]["price"];
-        price = `${priceObj["value"]} ${priceObj["currency"]}`
+        price = `${priceObj["symbol"]}${priceObj["value"]} ${priceObj["currency"]}`
     }else{
         price = "Unknown"
     }
@@ -52,15 +52,23 @@ export async function getProductInfo( asin:string, country:string){
     results = {
         "asin": tempProduct["asin"],
         "title": tempProduct["title"],
+        "image": tempProduct["main_image"]["link"],
         "price":price,
         "brand": tempProduct["brand"],
+        "link": tempProduct["link"],
+        "rating": tempProduct["rating"],
+        "ratings_total": tempProduct["ratings_total"],
+        // "specifications": tempProduct["specifications"],
+        "feature_bullets": tempProduct["feature_bullets_flat"],
+        "ai_keys":[
+            "asin",
+            "title",
+            // "specifications",
+            "feature_bullets",
+        ],
         // "categories": tempProduct["categories_flat"],
         // "description": tempProduct["description"],
-        // "feature_bullets": tempProduct["feature_bullets_flat"],
-        // "specifications": tempProduct["specifications"],
         // "specifications": tempProduct["specifications_flat"],
-        // "rating": tempProduct["rating"],
-        // "ratings_total": tempProduct["ratings_total"],
         // "reviews": reviews,
     }
     // ==============================================
