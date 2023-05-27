@@ -23,7 +23,7 @@ export async function generateTable(tableKey:string, productInfos){
     tableData = convertToTableData(chatResponse, productInfos)
 
 
-    console.log("tableData",tableData)
+    // console.log("tableData",tableData)
     catchBadTableData(tableData)
 
     // save tableData
