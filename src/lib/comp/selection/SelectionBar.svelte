@@ -2,7 +2,7 @@
 	import { X } from 'lucide-svelte';
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
     
-	import { selectedProducts } from '$lib/utils/stores';
+	import { selectedProducts, userCountry } from '$lib/utils/stores';
 	function removeCompareProduct(product) {
         selectedProducts.update((list) => {
             return list.filter((item) => item.asin !== product.asin)
@@ -14,13 +14,23 @@
 
 
 
+	import {MaxCompareProducts, MinCompareProducts} from '$lib/utils/config'
+	import {structTableKey} from '$lib/utils/schemas'
     import {goto} from '$app/navigation';
+	import {initToast} from '$lib/utils/toast'
 	function goToTable() {
-        let asinsOrdered = ""
-        const tableKey = `${country}-${asinsOrdered[0]}-${asinsOrdered[1]}`
+		if($selectedProducts.length<MinCompareProducts || $selectedProducts.length>MaxCompareProducts){
+			initToast(`You atleast need to select ${MinCompareProducts} products`)
+			return;
+		}
+
+		const tableKey = structTableKey($userCountry, getSelectedAsins());
         goto(`compare/${tableKey}/loading`)
 	}
 
+	function getSelectedAsins(){
+		return $selectedProducts.map(value=>value.asin)
+	}
 
 
 </script>

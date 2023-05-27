@@ -2,6 +2,11 @@
 import {supabaseService} from './init'
 import {error} from '@sveltejs/kit'
 
+
+
+
+
+
 export async function getTable(tableKey:string){
 
     const {data, error:err} = await supabaseService

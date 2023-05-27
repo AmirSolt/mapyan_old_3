@@ -6,7 +6,7 @@
 
 	export let products:any[] = [];
 
-    import {selectedProducts} from '$lib/utils/stores'
+    import {selectedProducts, userCountry} from '$lib/utils/stores'
     import {NumberOfCompareProducts} from '$lib/utils/config';
 
 
@@ -22,11 +22,22 @@
             if(list.length>=NumberOfCompareProducts){
                 return list;
             }
-            loadInputData()
+            loadInputData(product.asin)
             return list.find((item) => item.asin === product.asin) ? list : [...list, product]
         })
     }
-    async function loadInputData(){
+    async function loadInputData(asin:string){
+
+        await fetch('/api/preLoadCompareInputData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                asin: asin,
+                country: $userCountry
+            })
+        });
 
     }
 

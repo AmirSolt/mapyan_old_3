@@ -16,3 +16,5 @@
     <div class="p-24"></div>
     <LoadingAnim />
 </div>
+
+<!-- HCaptcha -->

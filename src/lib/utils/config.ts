@@ -1,5 +1,6 @@
 export const FinalTokenCountLimit = 2000;
-export const NumberOfCompareProducts = 2;
+export const MaxCompareProducts = 2;
+export const MinCompareProducts = 2;
 
 
 

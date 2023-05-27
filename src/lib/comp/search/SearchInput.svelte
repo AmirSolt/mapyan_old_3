@@ -2,16 +2,21 @@
 <script lang="ts">
     import {Search} from 'lucide-svelte'
     import {goto} from '$app/navigation';
-    
+    import {userCountry} from '$lib/utils/stores'
+
 
     
     export let searchTerm = '';
     let searchInput = searchTerm
   
+
+    import {structSearchTerm} from '$lib/utils/schemas'
     function searchForm(keyword:string) {
         if(keyword.length===0)
             return;
-        goto(`/search/${keyword}/loading`)
+
+        const key = structSearchTerm($userCountry, keyword)
+        goto(`/search/${key}/loading`)
     }
 
 </script>

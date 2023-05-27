@@ -1,22 +1,22 @@
 
 
 import {getSearchResults} from '$lib/server/products/api'
+import {destructSearchTerm} from '$lib/utils/schemas'
 
 
-export const load = async ({params, url}) => {
+export const load = async ({params}) => {
 
 
-    const country = url.searchParams.get('country') || 'US';
     const {key} = params;
 
+    const {country, keyword} = destructSearchTerm(key)
 
-
-    let products = await getSearchResults(key, country)
+    let products = await getSearchResults(keyword, country)
 
  
 
     return{
-        searchTerm: key,
+        searchTerm: keyword,
         products
     }
     
