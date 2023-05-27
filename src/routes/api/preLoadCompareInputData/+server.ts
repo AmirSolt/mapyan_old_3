@@ -9,5 +9,5 @@ export const POST = async ({request}) => {
     await getProductInfo(asin, country)
 
     
-    return new Response();
+    return new Response("sucess");
 };
