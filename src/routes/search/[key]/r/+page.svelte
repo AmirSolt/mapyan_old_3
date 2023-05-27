@@ -5,6 +5,8 @@
 
     import SearchInput from '$lib/comp/search/SearchInput.svelte';
 
+    import CardGrid from '$lib/comp/search/CardGrid.svelte';
+
 </script>
 
 
@@ -14,6 +16,4 @@
 
 <SearchInput {searchTerm} />
 
-<h1>
-    {products.length}
-</h1>
+<CardGrid {products} />

@@ -1,5 +1,5 @@
 import {countryToDomain} from '$lib/utils/country'
-import * as amazonAPI from '$lib/server/amazon/api'
+import * as amazonAPI from '$lib/server/products/amazon/api'
 import * as cache from './cache'
 
 export async function getSearchResults( keyword:string, country:string){
