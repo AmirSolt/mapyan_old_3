@@ -36,6 +36,7 @@
 
 
 
+
 	import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
     function onSubmit(e) {
@@ -43,6 +44,9 @@
 		const form = e.target
         let formData = new FormData(form)
 		const captchaToken = formData.get('h-captcha-response')?.toString()?? ''
+
+		if(!(captchaToken.length>0))
+			return;
 
         dispatch('submit', {
             captchaToken
