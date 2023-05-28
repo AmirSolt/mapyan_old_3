@@ -19,7 +19,8 @@ Follow these instructions:
 5. If answer is boolean use t or f.
 6. If answer is string keep it less than 15 characters.
 7. NEVER leave a cell empty
-8. Example response:
+8. Come up with ten features
+9. Example response:
     asin,[feature_name],[feature_name],...
     [asin_value],[feature_value],[feature_value],...
 `

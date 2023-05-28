@@ -32,6 +32,8 @@ export async function saveTable(tableKey:string, tableData:{}){
         .from('tables')
         .insert({tableKey, tableData})
 
+    console.log("saved to table:",data)
+
     if(err){
         console.log(err)
         throw error(400, `DB issue: ${err.message}`)

@@ -3,13 +3,13 @@
 		<div class="md:w-1/2">
 			<h1>
 				<span
-					class=" bg-gradient-to-r from-blue-400 to-purple-400  box-decoration-clone bg-clip-text text-6xl font-bold text-transparent">
+					class=" bg-gradient-to-r from-green-500 to-blue-400  box-decoration-clone bg-clip-text text-6xl font-bold text-transparent">
 					Compare Amazon Products
 				</span>
 			</h1>
 			<br>
 			<p class="text-3xl">
-				Utilize AI to generate comparison table for any products.
+				Utilize AI to generate a comparison table for any products.
 			</p>
 		</div>
 		
