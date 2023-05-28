@@ -76,7 +76,7 @@
 	<!-- is captcha solved -->
 
 	<div class="h-full flex flex-col justify-start items-center">
-		<div class="p-12" />
+		<div class="p-6 md:p-16" />
 		<LoadingAnim />
 		<br />
 

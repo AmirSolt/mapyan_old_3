@@ -58,9 +58,10 @@
 
 
 
-<form class="flex flex-col justify-center items-center" on:submit|preventDefault={onSubmit}>
+<form class="card p-4 md:p-10 flex flex-col justify-center items-center  rounded-lg" on:submit|preventDefault={onSubmit}>
 
-	<h1 class="text-3xl">
+
+	<h1 class="text-3xl text-primary-400">
 		Please submit the Captcha.
 	</h1>
 

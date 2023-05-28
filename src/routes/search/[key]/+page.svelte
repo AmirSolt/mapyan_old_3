@@ -24,7 +24,7 @@
 {#await getSearchResults(searchTerm, $userCountry)}
 
     <div class="h-full flex flex-col justify-start items-center">
-        <div class="p-24"></div>
+        <div class="p-6 md:p-16"></div>
         <LoadingAnim />
     </div>
 
