@@ -10,6 +10,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
+		"test:chrome": "npx playwright test --headed --browser=chromium",
+		"test:firefox": "npx playwright test --headed --browser=firefox",
+		"test:safari": "npx playwright test --headed --browser=webkit",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},

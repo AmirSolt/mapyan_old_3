@@ -1,3 +1,4 @@
+
 <script lang="ts">
 	import { X } from 'lucide-svelte';
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
@@ -12,7 +13,7 @@
     import { ProgressBar } from '@skeletonlabs/skeleton';
 	$: progressValue = ($selectedProducts.length / MaxCompareProducts) * 100;
 
-
+	$: barBg = $selectedProducts.length>0? 'variant-filled-surface' : '!bg-transparent'
 
 	import {MaxCompareProducts, MinCompareProducts} from '$lib/utils/config'
 	import {structTableKey} from '$lib/utils/schemas'
@@ -44,7 +45,7 @@
 		<ProgressBar rounded="rounded-t-lg" class="rounded-none" meter="bg-primary-500" height="h-2" value={progressValue} />
 	</div>
 	
-	<div class="card variant-filled-surface p-2 md:p-4 rounded-t-none  flex flex-row justify-between items-center md:px-24">
+	<div class="card {barBg} p-2 md:p-4 rounded-t-none  flex flex-row justify-between items-center md:px-24">
 		
 		<div class="">
 			<div class="flex justify-center items-center h-16 md:h-20">

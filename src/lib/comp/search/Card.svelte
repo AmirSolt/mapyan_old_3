@@ -28,7 +28,7 @@
         "ratings_total" in product
         }
 
-    <div id="product_card"  class=" flex flex-col justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 overflow-hidden"> 
+    <div id="product_card"  class=" flex flex-col justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 "> 
 
 
         <!-- Media -->
