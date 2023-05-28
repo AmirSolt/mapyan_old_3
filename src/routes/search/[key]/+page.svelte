@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    export let data;
+    export let data./r/$types.js;
     $: ({ searchTerm, products } = data);
 
     import SearchInput from '$lib/comp/search/SearchInput.svelte';

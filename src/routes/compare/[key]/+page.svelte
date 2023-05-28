@@ -1,7 +1,7 @@
 <script lang="ts">
     import CompareTable from "$lib/comp/compare/compareTable/CompareTable.svelte";
 
-    export let data;
+    export let data./r/$types.js;
     let {tableData} = data;
 
 </script>
