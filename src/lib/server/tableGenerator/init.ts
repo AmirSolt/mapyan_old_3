@@ -3,11 +3,14 @@ import {getResponse} from './chatgpt/init'
 import {getTableData, saveTable} from '$lib/server/supabase/supaDB'
 import {convertToTableData} from './tableDataValidate'
 import {error} from '@sveltejs/kit'
+import {getSBService} from '$lib/server/supabase/init'
 export async function generateTable(tableKey:string, productInfos){
 
 
+    let sbService = getSBService()
+
     // load tableData
-    let tableData = await getTableData(tableKey)
+    let tableData = await getTableData(sbService, tableKey)
     if(tableData){
         return tableData
     }
@@ -28,7 +31,7 @@ export async function generateTable(tableKey:string, productInfos){
 
     // save tableData
     console.log("about to save the tableData")
-    saveTable(tableKey, tableData)
+    saveTable(sbService, tableKey, tableData)
 
     return tableData
 }

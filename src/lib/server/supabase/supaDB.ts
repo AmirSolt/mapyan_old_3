@@ -1,5 +1,5 @@
+import type { SupabaseClient  } from "@supabase/supabase-js";
 
-import {supabaseService} from './init'
 import {error} from '@sveltejs/kit'
 
 
@@ -7,9 +7,9 @@ import {error} from '@sveltejs/kit'
 
 
 
-export async function getTableData(tableKey:string){
+export async function getTableData(sbService:SupabaseClient, tableKey:string){
 
-    const {data, error:err} = await supabaseService
+    const {data, error:err} = await sbService
         .from('tables')
         .select('tableData')
         .eq('tableKey', tableKey)
@@ -26,9 +26,9 @@ export async function getTableData(tableKey:string){
 }
 
 
-export async function saveTable(tableKey:string, tableData:{}){
+export async function saveTable(sbService:SupabaseClient, tableKey:string, tableData:{}){
 
-    const {data, error:err} = await supabaseService
+    const {data, error:err} = await sbService
         .from('tables')
         .insert({tableKey, tableData})
 
