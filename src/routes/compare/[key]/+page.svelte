@@ -20,7 +20,7 @@
 			window.setTimeout(awaitProductInfos, 100);
 		} else {
 			isProductInfosReady = true;
-			console.log("complete awaitProductInfos")
+			// console.log("complete awaitProductInfos")
 			if(isCaptchaResponded){
 				loadTableData();
 			}
@@ -30,7 +30,7 @@
 	function onCaptchaSubmit(event) {
         captchaToken = event.detail.captchaToken;
 		isCaptchaResponded = true;
-		console.log("captchaToken",captchaToken)
+		// console.log("captchaToken",captchaToken)
 		if(isProductInfosReady){
 			loadTableData();
 		}

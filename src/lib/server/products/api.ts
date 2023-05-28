@@ -21,6 +21,9 @@ export async function getProductInfo( asin:string, country:string){
     // ============= fetch =============================
     const domain = countryToDomain(country)
     let productInfo = await amazonAPI.getProductInfo(asin, domain)
+
+
+    
     const tempProduct = productInfo["product"]
     let reviews = [];
     if("top_reviews" in tempProduct){

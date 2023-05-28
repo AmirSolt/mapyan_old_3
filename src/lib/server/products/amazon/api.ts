@@ -19,6 +19,7 @@ export async function getSearchResults(keyword:string, domain:string){
         }
         products=data
     }).catch((err)=> {
+        console.log(err)
         throw error(400, `There was an error in amazon search: ${err}`)
     })
     return products
@@ -41,6 +42,7 @@ export async function getProductInfo(asin:string, domain:string){
         }
         product = data
     }).catch((err)=> {
+        console.log(err)
         throw error(400, `There was an error in fetching products: ${err}`)
     })
 
@@ -61,12 +63,14 @@ export async function getReviews(asin:string, domain:string){
     ).then((data)=>{
         
         if(!("reviews" in data)){
+            
             throw error(400, `[reviews] key does not exist in returned data`)
         }
-
+        
         reviews = data
-    
+        
     }).catch((err)=> {
+        console.log(err)
         throw error(400, `There was an error in fetching reviews: ${err}`)
     })
     return reviews

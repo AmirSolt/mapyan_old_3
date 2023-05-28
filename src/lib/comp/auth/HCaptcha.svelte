@@ -54,7 +54,7 @@
 
 
 
-<form on:submit|preventDefault={onSubmit}>
+<form class="flex flex-col justify-center items-center" on:submit|preventDefault={onSubmit}>
 
 	<h1 class="text-3xl">
 		Please submit the Captcha.

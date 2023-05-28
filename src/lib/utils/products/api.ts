@@ -79,7 +79,7 @@ export async function getProductInfo(asin:string, country:string) {
         result = data.result
 
     }else{
-        throw error(400, "failed to fetch search data")
+        throw error(400, "failed to fetch product info data")
     }
 
 
