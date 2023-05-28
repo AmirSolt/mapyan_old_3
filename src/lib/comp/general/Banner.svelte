@@ -4,12 +4,12 @@
 			<h1>
 				<span
 					class=" bg-gradient-to-r from-blue-400 to-purple-400  box-decoration-clone bg-clip-text text-6xl font-bold text-transparent">
-					Compare Amazon Reviews
+					Compare Amazon Products
 				</span>
 			</h1>
 			<br>
 			<p class="text-3xl">
-				Utilize AI to find the best product that suits your needs.
+				Utilize AI to generate comparison table for any products.
 			</p>
 		</div>
 		

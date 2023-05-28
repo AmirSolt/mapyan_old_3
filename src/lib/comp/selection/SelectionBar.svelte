@@ -24,8 +24,8 @@
 			return;
 		}
 
-		const tableKey = structTableKey($userCountry, getSelectedAsins());
-        goto(`/compare/${tableKey}/loading`)
+		const tableKey = structTableKey(getSelectedAsins());
+        goto(`/compare/${tableKey}`)
 	}
 
 	function getSelectedAsins(){
@@ -44,7 +44,7 @@
 		<ProgressBar rounded="rounded-t-lg" class="rounded-none" meter="bg-primary-500" height="h-2" value={progressValue} />
 	</div>
 	
-	<div class="card variant-filled p-2 md:p-4 rounded-t-none  flex flex-row justify-between items-center md:px-24">
+	<div class="card variant-filled-surface p-2 md:p-4 rounded-t-none  flex flex-row justify-between items-center md:px-24">
 		
 		<div class="">
 			<div class="flex justify-center items-center h-16 md:h-20">

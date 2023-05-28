@@ -15,7 +15,7 @@ export async function getTableData(tableKey:string){
         .eq('tableKey', tableKey)
 
     if(err){
-        throw error(400, `DB issue: ${err}`)
+        throw error(400, `DB issue: ${err.message}`)
     }
 
     if(data.length == 0)
@@ -32,7 +32,7 @@ export async function saveTable(tableKey:string, tableData:{}){
         .insert({tableKey, tableData})
 
     if(err){
-        throw error(400, `DB issue: ${err}`)
+        throw error(400, `DB issue: ${err.message}`)
     }
 
 

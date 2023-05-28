@@ -10,13 +10,11 @@
     let searchInput = searchTerm
   
 
-    import {structSearchTerm} from '$lib/utils/schemas'
     function searchForm(keyword:string) {
         if(keyword.length===0)
             return;
 
-        const key = structSearchTerm($userCountry, keyword)
-        goto(`/search/${key}/loading`)
+        goto(`/search/${keyword}`)
     }
 
 </script>

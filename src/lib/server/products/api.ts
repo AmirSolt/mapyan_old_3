@@ -4,33 +4,20 @@ import * as cache from './cache'
 
 export async function getSearchResults( keyword:string, country:string){
 
-    // load if exists
-    let results = cache.loadSearchedProducts( keyword, country)
-    if(results)
-        return results
+    let results = []
 
     // fetch
     const domain = countryToDomain(country)
     let searchResults = await amazonAPI.getSearchResults(keyword, domain)
-    results = searchResults["search_results"].map(product=>{
-
-        return product
-    })
-
-    // save
-    cache.saveSearchedProducts( keyword, country, results)
+    results = searchResults["search_results"]
 
     return results
-
 }
 
 export async function getProductInfo( asin:string, country:string){
 
-    // load if exists
-    let results = cache.loadProductInfo( asin, country)
-    if(results)
-        return results
 
+    let results = {}
     // ============= fetch =============================
     const domain = countryToDomain(country)
     let productInfo = await amazonAPI.getProductInfo(asin, domain)
@@ -74,9 +61,6 @@ export async function getProductInfo( asin:string, country:string){
     // ==============================================
 
 
-    // save
-    cache.saveProductInfo( asin, country, results)
-
     return results
 }
 
@@ -87,11 +71,9 @@ export async function getProductInfo( asin:string, country:string){
 
 export async function getProductReviews(asin:string, country:string){
 
-    // load if exists
-    let results = cache.loadProductReviews( asin, country)
-    if(results)
-        return results
 
+
+    let results = {}
     const domain = countryToDomain(country)
     let data = await amazonAPI.getReviews(asin, domain)
     results = {
@@ -99,8 +81,6 @@ export async function getProductReviews(asin:string, country:string){
         "reviews": data.reviews,
     }
 
-    // save
-    cache.saveProductReviews( asin, country, results)
-
+    
     return results
 }

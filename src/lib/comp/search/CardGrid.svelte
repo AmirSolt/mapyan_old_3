@@ -9,6 +9,7 @@
     import {selectedProducts, userCountry} from '$lib/utils/stores'
     import {MaxCompareProducts} from '$lib/utils/config';
 
+    import {getProductInfo} from '$lib/utils/products/api'
 
 
 
@@ -22,23 +23,9 @@
             if(list.length>=MaxCompareProducts){
                 return list;
             }
-            loadInputData(product.asin)
+            getProductInfo(product.asin, $userCountry)
             return list.find((item) => item.asin === product.asin) ? list : [...list, product]
         })
-    }
-    async function loadInputData(asin:string){
-
-        await fetch('/api/preLoadCompareInputData', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                asin: asin,
-                country: $userCountry
-            })
-        });
-
     }
 
 

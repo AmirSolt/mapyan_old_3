@@ -16,7 +16,7 @@ Follow these instructions:
 2. Come up with 10 features
 3. don't use title, asin or brand as a feature.
 4. Try to use boolean and number to answer.
-5. If answer is boolean use true or false.
+5. If answer is boolean use t or f.
 6. If answer is string keep it less than 15 characters.
 7. NEVER leave a cell empty
 8. Example response:

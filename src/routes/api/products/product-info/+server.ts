@@ -1,13 +1,16 @@
 
 import {getProductInfo} from '$lib/server/products/api'
+import { json } from '@sveltejs/kit';
 
 export const POST = async ({request}) => {
 
     let {asin, country} = await request.json()
 
 
-    await getProductInfo(asin, country)
+    const result = await getProductInfo(asin, country)
 
     
-    return new Response("sucess");
+    return json({
+        result
+    })
 };

@@ -35,14 +35,41 @@
 	});
 
 
+
+	import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+    function onSubmit(e) {
+
+		const form = e.target
+        let formData = new FormData(form)
+		const captchaToken = formData.get('h-captcha-response')?.toString()?? ''
+
+        dispatch('submit', {
+            captchaToken
+        });
+    }
+
+
 </script>
 
 
 
+<form on:submit|preventDefault={onSubmit}>
 
-<div 
-    id="hcaptcha"
-    class="h-captcha" 
-    data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"
-    
-></div>
+	<h1 class="text-3xl">
+		Please submit the Captcha.
+	</h1>
+
+	<br>
+
+	<div 
+		id="hcaptcha"
+		class="h-captcha" 
+		data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"
+	>
+	</div>
+
+	<br>
+	<button class="btn variant-filled w-full" type="submit">Submit</button>
+
+</form>
