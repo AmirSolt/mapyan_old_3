@@ -53,17 +53,19 @@ function convertDataType(dataPoint){
 
     if(dataPoint === undefined)
         return null
-    if(dataPoint=="true")
+    if(dataPoint.toLowerCase()=="true")
         return true
-    if(dataPoint=="false")
+    if(dataPoint.toLowerCase()=="false")
         return false
-    if(dataPoint=="t")
+    if(dataPoint.toLowerCase()=="t")
         return true
-    if(dataPoint=="f")
+    if(dataPoint.toLowerCase()=="f")
         return false
     if(dataPoint.toLowerCase()=="unknown")
         return null
-    if(dataPoint=="null")
+    if(dataPoint.toLowerCase()=="null")
+        return null
+    if(dataPoint.toLowerCase()=="n/a")
         return null
 
     return dataPoint

@@ -10,7 +10,7 @@
 </script>
 
 <div class="table-container">
-	<table class="table table-hover table-auto">
+	<table class="table table-hover table-fixed">
 		<tbody>
 			<!-- <tr>
 				<th class="w-16 ">Product</th>
@@ -49,3 +49,10 @@
 		</tbody>
 	</table>
 </div>
+
+
+
+<style>
+
+
+</style>

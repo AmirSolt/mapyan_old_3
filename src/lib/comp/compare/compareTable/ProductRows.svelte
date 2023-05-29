@@ -30,7 +30,7 @@
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
 				<span>
-					{truncate(colData.title, 15)}
+					{truncate(colData.title, 25)}
 				</span>
 			</a>
 		</td>

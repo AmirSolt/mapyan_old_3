@@ -39,7 +39,7 @@
 
 
 
-<div class="sticky top-0 z-10" >
+<div class={ $selectedProducts.length>0? "sticky top-0 z-10" : ""} >
 
 	<div class="variant-soft rounded-lg">
 		<ProgressBar rounded="rounded-t-lg" class="rounded-none" meter="bg-primary-500" height="h-2" value={progressValue} />
