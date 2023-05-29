@@ -9,6 +9,7 @@
 	import { onMount } from 'svelte';
 	import { loadUserCountry } from '$lib/utils/country';
 	import Header from '$lib/comp/general/Header.svelte';
+	import Footer from '$lib/comp/general/Footer.svelte';
 	
 	
 	onMount(() => {
@@ -24,6 +25,8 @@
 
 <svelte:head>
 	<title>MAPYAN</title>
+	<meta name="description" content="Use Mapyan to boost your online shopping experience with our AI-powered website, effortlessly generating dynamic comparison tables for Amazon products. Find the perfect item by effortlessly comparing features, prices, and customer reviews. Discover smarter shopping with our innovative tool today!">
+	<meta name="keywords" content="Mapyan, Amazon product comparison, AI-powered comparison tables, Dynamic product comparisons, Smart shopping tool, Online shopping assistant, Amazon price comparison, Customer reviews analysis, Product feature comparison, Effortless product research,">
 	<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </svelte:head>
 
@@ -44,6 +47,12 @@
 			<slot />
 		</div>
 	</div>
+
+	<svelte:fragment slot="pageFooter">
+		<footer>
+			<Footer />
+		</footer>
+	</svelte:fragment>
 
 
 </AppShell>

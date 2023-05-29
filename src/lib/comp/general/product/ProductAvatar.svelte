@@ -1,12 +1,12 @@
 <script lang='ts'>
     export let imageUrl:string = "";
-
+    export let size:number = 16;
 </script>
 
 
 <div>
 
-    <div class="flex justify-center items-center bg-white w-16 h-16 md:w-24 md:h-24 p-0  rounded-lg">
+    <div class="flex justify-center items-center bg-white w-{size} h-{size} md:w-24 md:h-24 p-1  rounded-lg">
     
         <!-- <Avatar src={imageUrl} width="w-full" rounded="rounded-full" /> -->
     

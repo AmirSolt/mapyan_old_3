@@ -18,6 +18,10 @@
             product
         });
     }
+
+    function truncate(text:string, size:number){
+		return text.substring(0,size) + " ...";
+	}
 </script>
 
 
@@ -28,7 +32,7 @@
         "ratings_total" in product
         }
 
-    <div id="product_card"  class=" flex flex-col justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 "> 
+    <div id="product_card"  class=" flex flex-col  justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 "> 
 
 
         <!-- Media -->
@@ -53,7 +57,7 @@
             <!-- Title -->
             <div id="title" class="row">
                 <a href="{product.link}" id="media" target="_blank" rel="noopener">
-                    <p class="truncate " >{product.title}</p>
+                    <p  >{truncate(product.title, 100)}</p>
                 </a>    
             </div>
             <!-- Ratings -->

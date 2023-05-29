@@ -61,20 +61,21 @@
 <form class="card p-4 md:p-10 flex flex-col justify-center items-center  rounded-lg" on:submit|preventDefault={onSubmit}>
 
 
-	<h1 class="text-3xl text-primary-400">
+	<h1 class="text-3xl">
 		Please submit the Captcha.
 	</h1>
 
 	<br>
 
+		
 	<div 
 		id="hcaptcha"
-		class="h-captcha" 
+		class="h-captcha " 
 		data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"
 	>
 	</div>
 
 	<br>
-	<button class="btn variant-filled w-full" type="submit">Submit</button>
+	<button class="btn variant-filled-primary w-full" type="submit">Submit</button>
 
 </form>

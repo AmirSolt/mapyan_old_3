@@ -17,7 +17,7 @@
 	{#each tableData as colData}
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
-				<ProductAvatar imageUrl={colData.image} />
+				<ProductAvatar imageUrl={colData.image} size={24} />
 			</a>
 		</td>
 	{/each}
@@ -29,7 +29,7 @@
 	{#each tableData as colData}
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
-				<span>
+				<span >
 					{truncate(colData.title, 25)}
 				</span>
 			</a>
@@ -56,7 +56,7 @@
 	{#each tableData as colData}
 		<td class="text-center">
 			<div class="row flex flex-col justify-center items-center">
-				<StarRating rating={colData.rating} />
+				<StarRating rating={colData.rating} starSize={4} />
 				<small class="mx-2">({colData.ratings_total})</small>
 			</div>
 		</td>
