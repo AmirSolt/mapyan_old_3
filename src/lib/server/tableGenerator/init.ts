@@ -1,6 +1,6 @@
 
 import {getResponse} from './chatgpt/init'
-import {getTableData, saveTable} from '$lib/server/supabase/supaDB'
+import {saveTable} from '$lib/server/supabase/supaDB'
 import {convertToTableData} from './tableDataValidate'
 import {error} from '@sveltejs/kit'
 import {getSBService} from '$lib/server/supabase/init'
@@ -8,12 +8,8 @@ export async function generateTable(tableKey:string, productInfos){
 
 
     let sbService = getSBService()
-
-    // load tableData
-    let tableData = await getTableData(sbService, tableKey)
-    if(tableData){
-        return tableData
-    }
+    let tableData:{} = {}
+    
 
 
     let aiProductInfos = getAiProductInfos(productInfos)

@@ -15,7 +15,6 @@ export const POST = async ({request}) => {
 
     const { asins } = destructTableKey(tableKey)
 
-    console.log("captchaToken",captchaToken)
 
     await checkCaptcha(captchaToken)
  

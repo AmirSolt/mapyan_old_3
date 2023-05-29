@@ -5,8 +5,7 @@ export async function getSearchResults(keyword:string, country:string) {
     
 
     const key = searchKey(keyword, country)
-
-    let result:[] = []
+    let result:[]=[];
 
     // Load from cache
     searchedProducts.subscribe((searchedResults)=>{
@@ -52,8 +51,7 @@ export async function getProductInfo(asin:string, country:string) {
     
 
     const key = asinKey(asin, country)
-
-    let result = {}
+    let result:{} = {}
 
     // Load from cache
     productInfos.subscribe((products)=>{
@@ -118,10 +116,6 @@ export function queryStoresProductInfo(asin:string, country:string) {
     })
     return result
 }
-
-
-
-
 
 
 

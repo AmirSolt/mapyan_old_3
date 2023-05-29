@@ -8,13 +8,21 @@
 	import { error } from '@sveltejs/kit';
 	import { checkProductInfosStore, queryStoresProductInfo } from '$lib/utils/products/api';
 	export let data;
-	const { tableKey } = data;
+	let { tableKey, tableData } = data;
 	const { asins } = destructTableKey(tableKey);
-	let tableData: [];
 	let isProductInfosReady: boolean = false;
 	let isCaptchaResponded: boolean = false;
 	let captchaToken:string;
 
+
+	import { onMount } from 'svelte';
+	onMount(async () => {
+		if(!tableData){
+			awaitProductInfos();
+		}
+	});
+
+	
 	function awaitProductInfos() {
 		if (!checkProductInfosStore(asins, $userCountry)) {
 			window.setTimeout(awaitProductInfos, 100);
@@ -54,35 +62,31 @@
 			const data = await response.json();
 			tableData = data.tableData;
 		} else {
-			throw error(400, `failed to get table response data. response:${data.toString()}`);
+			throw error(400, `failed to get /api/compare response. response:${data.toString()}`);
 		}
 	}
 
 
 
-	import { onMount } from 'svelte';
-	onMount(() => {
-		awaitProductInfos();
-	});
+	
 
 
 
 </script>
 
 
-
-
-{#if !tableData}
+{#if !tableData }
 	<!-- is captcha solved -->
 
 	<div class="h-full flex flex-col justify-start items-center">
-		<div class="p-6 md:p-16" />
-		<LoadingAnim />
-		<br />
-
+		
 		{#if !isCaptchaResponded}
+			<div class="p-6 md:p-16" />
 			<HCaptcha on:submit={onCaptchaSubmit} />
 		{:else}
+			<div class="p-6 md:p-16" />
+			<LoadingAnim />
+			<br>
 			<CompareLoading />
 		{/if}
 	</div>
