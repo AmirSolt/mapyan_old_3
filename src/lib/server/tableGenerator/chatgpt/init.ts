@@ -10,7 +10,6 @@ import {error} from '@sveltejs/kit'
 
 export const getResponse = async (cleanInputProducts) => {
 
-    console.log( "products: "+JSON.stringify(cleanInputProducts))
 
     const messages: ChatCompletionRequestMessage[] = [
         { role: ChatCompletionRequestMessageRoleEnum.System, content:"Products: "+JSON.stringify(cleanInputProducts)},
