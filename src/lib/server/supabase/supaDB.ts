@@ -32,7 +32,6 @@ export async function saveTable(sbService:SupabaseClient, tableKey:string, table
         .from('tables')
         .insert({tableKey, tableData})
 
-    console.log("saved to table:",data)
 
     if(err){
         console.log(err)

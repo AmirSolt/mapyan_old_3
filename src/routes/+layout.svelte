@@ -25,7 +25,7 @@
 
 <svelte:head>
 	<title>MAPYAN</title>
-	<meta name="description" content="Use Mapyan to boost your online shopping experience with our AI-powered website, effortlessly generating dynamic comparison tables for Amazon products. Find the perfect item by effortlessly comparing features, prices, and customer reviews. Discover smarter shopping with our innovative tool today!">
+	<meta name="description" content="Pick any two amazon products and generate a comparison table using AI. Our innovative platform empowers you to generate comprehensive and insightful comparison tables, providing you with a side-by-side analysis of key features, specifications, customer reviews, and more.">
 	<meta name="keywords" content="Mapyan, Amazon product comparison, AI-powered comparison tables, Dynamic product comparisons, Smart shopping tool, Online shopping assistant, Amazon price comparison, Customer reviews analysis, Product feature comparison, Effortless product research,">
 	<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </svelte:head>

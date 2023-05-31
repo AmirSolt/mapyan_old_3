@@ -35,7 +35,7 @@
 				{#each tableData as colData}
 					<td class="text-center ">
 						<div class="flex justify-center">
-								<a class="btn variant-filled" href={colData.link} target="_blank" rel="noopener" >
+								<a class="btn variant-filled-primary" href={colData.link} target="_blank" rel="noopener" >
 									Open
 									<span></span>
 									<CornerUpRight size={18} strokeWidth={1} />

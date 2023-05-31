@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { ProgressBar } from '@skeletonlabs/skeleton';
 
-	export let seconds:number= 30;
+	export let seconds:number= 40;
+	export let verbose:boolean= true;
 
 
 	// ======================= Loading Logic ============================
@@ -18,21 +19,23 @@
 
 
 
-<div class="flex p-2 flex-col">
+<div class="w-1/4 flex p-2 flex-col ">
 	<ProgressBar
 		rounded="rounded-lg"
-		class="rounded-none"
+		class="rounded-lg"
 		meter="bg-primary-500"
 		height="h-4"
 		value={progressValue}
 	/>
 
-	<br />
-	<div class="flex flex-col justify-center items-center text-center">
-		<p class="text-2xl">Generating a comparison table</p>
+	{#if verbose}
 		<br />
-		<p>This usually takes about {seconds} seconds</p>
-		<p>We are working to improve the loading speed.</p>
-		<p>Thank you for being patient.</p>
-	</div>
+		<div class="flex flex-col justify-center items-center text-center">
+			<p class="text-2xl">Generating a comparison table</p>
+			<br />
+			<p>This usually takes about {seconds} seconds</p>
+			<p>We are working to improve the loading speed.</p>
+			<p>Thank you for being patient.</p>
+		</div>
+	{/if}
 </div>

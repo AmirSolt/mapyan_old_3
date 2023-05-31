@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { X } from 'lucide-svelte';
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
-    
+        import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { selectedProducts, userCountry } from '$lib/utils/stores';
 	function removeCompareProduct(product) {
         selectedProducts.update((list) => {
@@ -15,11 +15,16 @@
 
 	$: barBg = $selectedProducts.length>0? 'variant-filled-surface' : '!bg-transparent'
 
+	let buttonLoading:boolean = false
+
 	import {MaxCompareProducts, MinCompareProducts} from '$lib/utils/config'
 	import {structTableKey} from '$lib/utils/schemas'
     import {goto} from '$app/navigation';
 	import {initToast} from '$lib/utils/toast'
 	function goToTable() {
+
+		buttonLoading = true;
+
 		if($selectedProducts.length<MinCompareProducts || $selectedProducts.length>MaxCompareProducts){
 			initToast(`You atleast need to select ${MinCompareProducts} products`)
 			return;
@@ -72,7 +77,11 @@
 		<div class="w-1/4">
 			{#if $selectedProducts.length > 0}
 				<button class="btn variant-filled-primary w-full" type="button" on:click={goToTable}>
-					Compare	
+					{#if !buttonLoading}
+					Compare	  
+					{:else}
+					<ProgressRadial  width="w-12" stroke={100} />
+					{/if}
 				</button>
 			{:else}
 				<button class="btn variant-ringed w-full" type="button" disabled> - </button>

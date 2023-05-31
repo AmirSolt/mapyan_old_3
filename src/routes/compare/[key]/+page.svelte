@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CompareTable from '$lib/comp/compare/compareTable/CompareTable.svelte';
-	import LoadingAnim from '$lib/comp/general/LoadingAnim.svelte';
-	import CompareLoading from '$lib/comp/compare/CompareLoading.svelte';
-	import HCaptcha from '$lib/comp/auth/HCaptcha.svelte';
+	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
+	import BarLoading from '$lib/comp/general/loading/BarLoading.svelte';
+	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
 	import { userCountry } from '$lib/utils/stores';
 	import { destructTableKey } from '$lib/utils/schemas';
 	import { error } from '@sveltejs/kit';
@@ -11,8 +11,6 @@
 	let { tableKey, tableData } = data;
 	const { asins } = destructTableKey(tableKey);
 	let isProductInfosReady: boolean = false;
-	let isCaptchaResponded: boolean = false;
-	let captchaToken:string;
 
 
 	import { onMount } from 'svelte';
@@ -29,20 +27,10 @@
 		} else {
 			isProductInfosReady = true;
 			console.log("product infos loaded")
-			if(isCaptchaResponded){
-				loadTableData();
-			}
-		}
-	}
-
-	function onCaptchaSubmit(event) {
-        captchaToken = event.detail.captchaToken;
-		isCaptchaResponded = true;
-		console.log("captcha submitted")
-		if(isProductInfosReady){
 			loadTableData();
 		}
 	}
+
 
 	async function loadTableData() {
 		let productInfos = asins.map((asin) => queryStoresProductInfo(asin, $userCountry));
@@ -55,7 +43,6 @@
 			body: JSON.stringify({
 				tableKey,
 				productInfos,
-				captchaToken
 			})
 		});
 		if (response.ok) {
@@ -66,30 +53,23 @@
 		}
 	}
 
-
-
-	
-
-
-
 </script>
 
 
-{#if !tableData }
-	<!-- is captcha solved -->
 
-	<div class="h-full flex flex-col justify-start items-center">
+
+
+
+
+{#if !tableData }
+
+	<LoadingContainer >
+		<LoadingAnim />
+		<br>
+		<BarLoading />
 		
-		{#if !isCaptchaResponded}
-			<div class="p-6 md:p-16" />
-			<HCaptcha on:submit={onCaptchaSubmit} />
-		{:else}
-			<div class="p-6 md:p-16" />
-			<LoadingAnim />
-			<br>
-			<CompareLoading />
-		{/if}
-	</div>
+	</LoadingContainer>
+
 {:else}
 	<p class="text-sm">
 		*This information has been generated with the help of AI, and has not been confirmed by a human.

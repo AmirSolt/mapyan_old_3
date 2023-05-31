@@ -13,8 +13,10 @@
     // }
 
 
-    import LoadingAnim from '$lib/comp/general/LoadingAnim.svelte';
-    import { onMount } from 'svelte';
+    import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
+	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
+    import BarLoading from '$lib/comp/general/loading/BarLoading.svelte';
+
 
 </script>
 
@@ -23,11 +25,11 @@
 
 {#await getSearchResults(searchTerm, $userCountry)}
 
-    <div class="h-full flex flex-col justify-start items-center">
-        <div class="p-6 md:p-16"></div>
+    <LoadingContainer >
         <LoadingAnim />
-    </div>
-
+        <br>
+        <BarLoading seconds={10} verbose={false}/>
+    </LoadingContainer>
 {:then products}
 
 

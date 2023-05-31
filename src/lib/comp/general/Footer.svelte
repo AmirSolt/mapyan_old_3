@@ -49,7 +49,7 @@
       <hr class="my-6  sm:mx-auto lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm sm:text-center ">
-            Thank you for visiting our website! We want to be transparent with you about the nature of our website and how we monetize it through affiliate marketing. It is important for us to provide you with this disclaimer regarding affiliate links and the potential benefits we may receive from them.
+            Thank you for visiting our website! We want to be transparent with you about the nature of our website and how we monetize it through affiliate marketing.
           </span>
       </div>
     </div>

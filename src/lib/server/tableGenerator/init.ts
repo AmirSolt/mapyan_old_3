@@ -26,7 +26,6 @@ export async function generateTable(tableKey:string, productInfos){
     catchBadTableData(tableData)
 
     // save tableData
-    console.log("about to save the tableData")
     saveTable(sbService, tableKey, tableData)
 
     return tableData
