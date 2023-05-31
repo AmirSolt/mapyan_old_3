@@ -7,11 +7,11 @@ import {error} from '@sveltejs/kit'
 
 
 
-export async function getTableData(sbService:SupabaseClient, tableKey:string){
+export async function getCompare(sbService:SupabaseClient, tableKey:string){
 
     const {data, error:err} = await sbService
-        .from('tables')
-        .select('tableData')
+        .from('compares')
+        .select('tableData, chatResponse')
         .eq('tableKey', tableKey)
 
     if(err){
@@ -20,18 +20,21 @@ export async function getTableData(sbService:SupabaseClient, tableKey:string){
     }
 
     if(data.length == 0)
-        return undefined
+        return {tableData:undefined, chatResponse:undefined}
 
-    return data[0].tableData
+    let tableData = data[0].tableData?? undefined
+    let chatResponse = data[0].chatResponse?? undefined
+
+    return {tableData, chatResponse}
 }
 
 
-export async function saveTable(sbService:SupabaseClient, tableKey:string, tableData:{}){
+
+export async function saveCompare(sbService:SupabaseClient, tableKey:string, tableData:{}, chatResponse:string){
 
     const {data, error:err} = await sbService
-        .from('tables')
-        .insert({tableKey, tableData})
-
+        .from('compares')
+        .insert({tableKey, tableData, chatResponse})
 
     if(err){
         console.log(err)
@@ -39,5 +42,35 @@ export async function saveTable(sbService:SupabaseClient, tableKey:string, table
     }
 
 
+    return data
+}
+
+
+export async function saveTable(sbService:SupabaseClient, tableKey:string, tableData:{}){
+
+    const {data, error:err} = await sbService
+        .from('compares')
+        .insert({tableKey, tableData})
+
+    if(err){
+        console.log(err)
+        throw error(400, `DB issue: ${err.message}`)
+    }
+
+
+    return data
+}
+
+export async function saveChatResponse(sbService:SupabaseClient, tableKey:string, chatResponse:string){
+
+    const {data, error:err} = await sbService
+        .from('compares')
+        .update({chatResponse:chatResponse})
+        .eq('tableKey', tableKey)
+
+    if(err){
+        console.log(err)
+        throw error(400, `DB issue: ${err.message}`)
+    }
     return data
 }

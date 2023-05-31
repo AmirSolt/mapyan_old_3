@@ -3,12 +3,13 @@
 	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
 	import BarLoading from '$lib/comp/general/loading/BarLoading.svelte';
 	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
+	import ResponseCard from '$lib/comp/compare/responseCard.svelte';
 	import { userCountry } from '$lib/utils/stores';
 	import { destructTableKey } from '$lib/utils/schemas';
 	import { error } from '@sveltejs/kit';
 	import { checkProductInfosStore, queryStoresProductInfo } from '$lib/utils/products/api';
 	export let data;
-	let { tableKey, tableData } = data;
+	let { chatResponse, tableKey, tableData } = data;
 	const { asins } = destructTableKey(tableKey);
 	let isProductInfosReady: boolean = false;
 
@@ -18,6 +19,7 @@
 		if(!tableData){
 			awaitProductInfos();
 		}
+
 	});
 
 	
@@ -47,8 +49,11 @@
 		});
 		if (response.ok) {
 			const data = await response.json();
+			console.log(data)
+			chatResponse = data.chatResponse;
 			tableData = data.tableData;
 		} else {
+			console.log(data)
 			throw error(400, `failed to get /api/compare response. response:${data.toString()}`);
 		}
 	}
@@ -88,6 +93,14 @@
 	<br />
 	<hr />
 	<br />
+
+	
+	
+	<p>
+		<ResponseCard rawResponse={chatResponse} {tableData}/>
+	</p>
+	
+	<br>
 
 	<CompareTable {tableData} />
 {/if}

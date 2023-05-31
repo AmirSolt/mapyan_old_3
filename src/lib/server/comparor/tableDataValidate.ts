@@ -1,19 +1,12 @@
 import {error} from '@sveltejs/kit'
 
-export function convertToTableData(response, productInfos){
+export function convertToTableData(productInfos){
 
-    if(!("content" in response)){
-        throw error(400, {message: 'Got no response from AI'})
-    }
-    const convertedResponse:{} = csvToJson(response.content)
 
-    // console.log("convertedResponse",convertedResponse)
-
-    let tableData:any[] = []
+    let tableData:{} = {}
 
     productInfos.forEach((product) =>{
-        const response = convertedResponse[product.asin];
-        tableData.push({
+        tableData[product.asin] = {
                 "asin":product.asin,
                 "brand":product.brand,
                 "title":product.title,
@@ -22,8 +15,7 @@ export function convertToTableData(response, productInfos){
                 "link":product.link,
                 "rating":product.rating,
                 "ratings_total":product.ratings_total,
-                "response": response
-        }) 
+        }
     })
 
     return tableData;

@@ -2,7 +2,7 @@
 import {MaxCompareProducts, MinCompareProducts} from '$lib/utils/config'
 import {destructTableKey} from '$lib/utils/schemas'
 import {error, json} from '@sveltejs/kit'
-import {generateTable} from '$lib/server/tableGenerator/init'
+import {generateCompare} from '$lib/server/comparor/init'
 
 
 
@@ -20,10 +20,11 @@ export const POST = async ({request}) => {
         throw error(400, `Selected asins are crossing min or max asins: ${asins}`)
     }
 
-    let tableData:{} = await generateTable(tableKey, productInfos)
+    let {chatResponse, tableData} = await generateCompare(tableKey, productInfos)
 
     
     return json({
+        chatResponse,
         tableData
     })
 

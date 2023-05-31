@@ -93,7 +93,7 @@ async function getChatGPTResponse(messages) {
         throw error(400, "No response from AI")
 
 
-    return jsonResponse.choices[0].message
+    return jsonResponse.choices[0].message.content
 }
 
 

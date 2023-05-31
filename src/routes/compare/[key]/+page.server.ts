@@ -1,6 +1,6 @@
 
 
-import {getTableData} from '$lib/server/supabase/supaDB'
+import {getCompare} from '$lib/server/supabase/supaDB'
 import {getSBService} from '$lib/server/supabase/init'
 
 export const load = async ({params}) => {
@@ -10,11 +10,12 @@ export const load = async ({params}) => {
 
 
     let sbService = getSBService()
-    let tableData = await getTableData(sbService, key)
+    let {tableData, chatResponse} = await getCompare(sbService, key)
 
     return{
         tableKey:key,
-        tableData
+        tableData,
+        chatResponse
     }
 
 };

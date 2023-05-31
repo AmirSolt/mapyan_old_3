@@ -1,10 +1,10 @@
 
 import {getResponse} from './chatgpt/init'
-import {saveTable} from '$lib/server/supabase/supaDB'
+import {saveCompare, saveTable} from '$lib/server/supabase/supaDB'
 import {convertToTableData} from './tableDataValidate'
 import {error} from '@sveltejs/kit'
 import {getSBService} from '$lib/server/supabase/init'
-export async function generateTable(tableKey:string, productInfos){
+export async function generateCompare(tableKey:string, productInfos){
 
 
     let sbService = getSBService()
@@ -19,26 +19,16 @@ export async function generateTable(tableKey:string, productInfos){
     console.log("ChatGPT Finished")
 
 
-    tableData = convertToTableData(chatResponse, productInfos)
-
-
-    // console.log("tableData",tableData)
-    catchBadTableData(tableData)
+    tableData = convertToTableData(productInfos)
 
     // save tableData
-    saveTable(sbService, tableKey, tableData)
+    saveCompare(sbService, tableKey, tableData, chatResponse)
 
-    return tableData
+    return {chatResponse, tableData}
 }
 
 
 
-function catchBadTableData(tableData){
-    tableData.forEach(table=>{
-        if(!("response" in table))
-            throw error(400, "AI response failed")
-    })
-}
 
 
 function getAiProductInfos(productInfos){
@@ -51,6 +41,3 @@ function getAiProductInfos(productInfos){
     })
 }
 
-function truncate(text:string, size:number){
-    return text.substring(0,size) + " ...";
-}

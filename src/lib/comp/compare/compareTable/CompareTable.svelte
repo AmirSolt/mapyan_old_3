@@ -10,7 +10,7 @@
 </script>
 
 <div class="table-container">
-	<table class="table table-hover table-fixed">
+	<table class="table table-hover table-auto">
 		<tbody>
 			<!-- <tr>
 				<th class="w-16 ">Product</th>
@@ -21,18 +21,18 @@
 
 			<ProductRows {tableData} />
 
-			{#each Object.keys(tableData[0].response) as key}
+			<!-- {#each Object.keys(tableData[0].response) as key}
 				<tr>
 					<th class="">{removeAllUnderscore(key)}</th>
 					{#each tableData as colData}
 						<CompareRows {key} cellData={colData.response[key]} />
 					{/each}
 				</tr>
-			{/each}
+			{/each} -->
 
 			<tr>
 				<th class="">Link</th>
-				{#each tableData as colData}
+				{#each Object.values(tableData) as colData}
 					<td class="text-center ">
 						<div class="flex justify-center">
 								<a class="btn variant-filled-primary" href={colData.link} target="_blank" rel="noopener" >

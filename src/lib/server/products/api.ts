@@ -50,12 +50,16 @@ export async function getProductInfo( asin:string, country:string){
         "ratings_total": tempProduct["ratings_total"],
         // "specifications": tempProduct["specifications"],
         "feature_bullets": tempProduct["feature_bullets_flat"],
-        // "reviews": reviews[0],
+        "reviews": reviews[0],
         "ai_keys":[
             "asin",
             "title",
+            "price",
+            "rating",
+            "ratings_total",
+            "reviews"
             // "specifications",
-            "feature_bullets",
+            // "feature_bullets",
         ],
         // "categories": tempProduct["categories_flat"],
         // "description": tempProduct["description"],

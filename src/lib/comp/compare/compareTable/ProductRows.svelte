@@ -14,7 +14,7 @@
 
 <tr>
 	<th class="">Product</th>
-	{#each tableData as colData}
+	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
 				<ProductAvatar imageUrl={colData.image} size={24} />
@@ -26,7 +26,7 @@
 
 <tr>
 	<th class="">Title</th>
-	{#each tableData as colData}
+	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
 				<span >
@@ -40,7 +40,7 @@
 
 <tr>
 	<th class="">Brand</th>
-	{#each tableData as colData}
+	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<div class="">
 				<span>
@@ -53,7 +53,7 @@
 
 <tr>
 	<th class="">Ratings</th>
-	{#each tableData as colData}
+	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<div class="row flex flex-col justify-center items-center">
 				<StarRating rating={colData.rating} starSize={4} />
@@ -65,7 +65,7 @@
 
 <tr>
 	<th class="">Price</th>
-	{#each tableData as colData}
+	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<div class="">
 				<span>
