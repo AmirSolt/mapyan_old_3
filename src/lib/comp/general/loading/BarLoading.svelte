@@ -19,7 +19,7 @@
 
 
 
-<div class="w-1/4 flex p-2 flex-col ">
+<div class="w-60 md:w-80 flex p-2 flex-col ">
 	<ProgressBar
 		rounded="rounded-lg"
 		class="rounded-lg"

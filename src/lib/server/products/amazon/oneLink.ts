@@ -1,4 +1,4 @@
-// ================= ONE LINK dosnt work with amazon products. Dumbasses can't do anyth right
+// // ================= ONE LINK dosnt work with amazon products. Dumbasses can't do anyth right
 // function swapUrlWithAFfiliate(url:string){
 //     const urlObj = new URL(url);
 //     swapDomain(urlObj);

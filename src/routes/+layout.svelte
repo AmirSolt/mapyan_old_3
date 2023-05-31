@@ -28,6 +28,7 @@
 	<meta name="description" content="Pick any two amazon products and generate a comparison table using AI. Our innovative platform empowers you to generate comprehensive and insightful comparison tables, providing you with a side-by-side analysis of key features, specifications, customer reviews, and more.">
 	<meta name="keywords" content="Mapyan, Amazon product comparison, AI-powered comparison tables, Dynamic product comparisons, Smart shopping tool, Online shopping assistant, Amazon price comparison, Customer reviews analysis, Product feature comparison, Effortless product research,">
 	<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+
 </svelte:head>
 
 

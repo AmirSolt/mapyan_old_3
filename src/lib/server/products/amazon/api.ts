@@ -5,7 +5,6 @@ const API_URL = 'https://api.asindataapi.com/request'
 
 
 
-
 export async function getSearchResults(keyword:string, domain:string){
     let products:any[] = [];
     const url = addQueriesToURL(API_URL, getSearchQueries(keyword, domain));
