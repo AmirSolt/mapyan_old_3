@@ -117,11 +117,11 @@
 
             <div class='flex justify-end items-center  w-full'>
                 {#if thisInSelecteds || reachedMaxSelected}
-                    <button class="btn variant-filled w-full h-10 md:w-3/4 md:h-12" type="button" disabled>
+                    <button class="btn variant-filled w-full h-10 md:w-3/4 md:h-12" disabled>
                         -
                     </button>
                 {:else}
-                    <button class="btn variant-filled w-full h-10 md:w-3/4 md:h-12" type="button" on:click={onAdd}>
+                    <button class="btn variant-filled w-full h-10 md:w-3/4 md:h-12" on:click={onAdd}>
                         + Add
                     </button>
                 {/if}

@@ -28,7 +28,14 @@
     <LoadingContainer >
         <LoadingAnim />
         <br>
-        <BarLoading seconds={10} verbose={false}/>
+        <BarLoading seconds={20} >
+
+            <br />
+            <div class="flex flex-col justify-center items-center text-center">
+                <p>We are working to improve the loading speed.</p>
+				<p>Thank you for being patient.</p>
+            </div>
+        </BarLoading>
     </LoadingContainer>
 {:then products}
 

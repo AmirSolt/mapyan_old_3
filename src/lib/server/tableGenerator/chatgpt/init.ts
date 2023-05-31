@@ -10,9 +10,11 @@ import {error} from '@sveltejs/kit'
 
 export const getResponse = async (cleanInputProducts) => {
 
+    console.log( "products: "+JSON.stringify(cleanInputProducts))
+
     const messages: ChatCompletionRequestMessage[] = [
-        { role: ChatCompletionRequestMessageRoleEnum.System, content:ChatGPTInstructions},
-        { role: ChatCompletionRequestMessageRoleEnum.User, content: "products: "+JSON.stringify(cleanInputProducts)}
+        { role: ChatCompletionRequestMessageRoleEnum.System, content:"Products: "+JSON.stringify(cleanInputProducts)},
+        { role: ChatCompletionRequestMessageRoleEnum.User, content: ChatGPTInstructions}
     ]
 
     const reponse = await getChatGPTResponse(messages)

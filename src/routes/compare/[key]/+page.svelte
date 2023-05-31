@@ -53,6 +53,9 @@
 		}
 	}
 
+
+
+
 </script>
 
 
@@ -66,8 +69,15 @@
 	<LoadingContainer >
 		<LoadingAnim />
 		<br>
-		<BarLoading />
-		
+		<BarLoading>
+			<br />
+			<div class="flex flex-col justify-center items-center text-center">
+				<p class="text-2xl">Generating a comparison table</p>
+				<br />
+				<p>We are working to improve the loading speed.</p>
+				<p>Thank you for being patient.</p>
+			</div>
+		</BarLoading>
 	</LoadingContainer>
 
 {:else}

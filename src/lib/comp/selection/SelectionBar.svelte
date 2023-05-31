@@ -57,7 +57,6 @@
 				{#each $selectedProducts as product}
 					<button
 						id="compare-button"
-						type="button"
 						class="relative m-2 md:m-4"
 						on:click={() => removeCompareProduct(product)}
 					>
@@ -76,7 +75,7 @@
 
 		<div class="w-1/4">
 			{#if $selectedProducts.length > 0}
-				<button class="btn variant-filled-primary w-full" type="button" on:click={goToTable}>
+				<button class="btn variant-filled-primary w-full" on:click={goToTable}>
 					{#if !buttonLoading}
 					Compare	  
 					{:else}
@@ -84,7 +83,7 @@
 					{/if}
 				</button>
 			{:else}
-				<button class="btn variant-ringed w-full" type="button" disabled> - </button>
+				<button class="btn variant-ringed w-full"  disabled> - </button>
 			{/if}
 		</div>
 	</div>

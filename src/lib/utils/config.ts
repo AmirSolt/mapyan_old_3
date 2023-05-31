@@ -9,18 +9,39 @@ export const MinCompareProducts = 2;
 
 
 
-export const ChatGPTTemprature = 0.3 // lower more coherence, higher more creativity
+export const ChatGPTTemprature = 0.15 // lower more coherence, higher more creativity
+
+
 export const ChatGPTInstructions=`
 Follow these instructions:
-1. Create a comparison table with given products.
-2. Come up with 10 features
-3. don't use title, asin or brand as a feature.
-4. Try to use boolean and number to answer.
-5. If answer is boolean use t or f.
-6. If answer is string keep it less than 15 characters.
-7. NEVER leave a cell empty
-8. Come up with ten features
-9. Example response:
-    asin,[feature_name],[feature_name],...
-    [asin_value],[feature_value],[feature_value],...
+- Create a comparison table with given products.
+- Only extract information that describes the product  objectively.
+- Examples of comparable features are: texture, components, washability so on.
+- Come up with 15 features to compare
+- don't use title, asin or brand as a feature.
+- Use "t" or "f" for boolean.
+- Use | to split each cell
+- Every product must have same number of rows.
+- Come up with fifteen features to compare.
+- Only answer in csv.
+- Format must be csv, example response:
+         asin|[feature_name]|[feature_name]|...
+         [asin_value]|[feature_value]|[feature_value]|...
 `
+
+
+
+// export const ChatGPTInstructions=`
+// Follow these instructions:
+// - Create a comparison table with given products.
+// - The purpose of this table is to determine which product is the better one.
+// - Come up with 10 features that you find most relevant to these products.
+// - don't use title, asin or brand as a feature.
+// - If answer is boolean use t or f.
+// - If answer is string keep it less than 20 characters.
+// - NEVER leave a cell empty.
+// - Come up with ten features that you find most relevant to these products.
+// - Format must be csv, example response:
+//     asin,[feature_name],[feature_name],...
+//     [asin_value],[feature_value],[feature_value],...
+// `

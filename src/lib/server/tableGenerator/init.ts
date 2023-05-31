@@ -50,3 +50,7 @@ function getAiProductInfos(productInfos){
         return r
     })
 }
+
+function truncate(text:string, size:number){
+    return text.substring(0,size) + " ...";
+}

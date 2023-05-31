@@ -33,12 +33,13 @@ export function convertToTableData(response, productInfos){
 
 
 function csvToJson(csv){
+    const spliter = "|"
     var lines=csv.split("\n");
     var result = {};
-    var headers=lines[0].split(",");
+    var headers=lines[0].split(spliter);
     for(let i=1;i<lines.length;i++){
         var obj = {};
-        var currentline=lines[i].split(",");
+        var currentline=lines[i].split(spliter);
         for(let j=1;j<headers.length;j++){
             let data = convertDataType(currentline[j])
             obj[headers[j]] = data;
