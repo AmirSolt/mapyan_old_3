@@ -91,6 +91,7 @@
 			try {
 				if (e.data === '[DONE]') {
 					saveCompare()
+					isStreamed = false
 					return
 				}
 				

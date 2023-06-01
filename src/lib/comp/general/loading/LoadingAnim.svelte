@@ -12,11 +12,6 @@
 		<span></span>
 		<h1>MAPYAN</h1>
 	</div>
-	<br />
-	<br />
-
-  
-
 
 </div>
 
