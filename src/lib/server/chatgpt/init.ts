@@ -16,9 +16,9 @@ export const getResponse = async (cleanInputProducts) => {
         { role: ChatCompletionRequestMessageRoleEnum.User, content: ChatGPTInstructions}
     ]
 
-    const reponse = await getChatGPTResponse(messages)
+    const chatResponse = getChatGPTResponse(messages)
 
-    return reponse
+    return chatResponse
 }
 
 
@@ -55,45 +55,51 @@ async function getChatGPTResponse(messages) {
         model: 'gpt-3.5-turbo',
         messages: messages,
         temperature: ChatGPTTemprature,
+        stream:true
     }
 
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
         headers: {
             Authorization: `Bearer ${PRIVATE_OPENAI_KEY}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         method: 'POST',
         body: JSON.stringify(chatRequestOpts)
     })
 
-
-
-    // =================== Data extraction ===================
     if (!chatResponse.ok) {
         const err = await chatResponse.json()
         throw error(400, err.error.message)
     }
 
-    const chunks = [];
-    const reader = chatResponse.body.getReader();
-
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-    }
-
-    const responseText = new TextDecoder('utf-8').decode(
-        new Uint8Array(Buffer.concat(chunks))
-    );
-
-    const jsonResponse = JSON.parse(responseText);
-
-    if (jsonResponse.choices.length === 0)
-        throw error(400, "No response from AI")
 
 
-    return jsonResponse.choices[0].message.content
+    return chatResponse
+
+    // =========== Turns stream to json =============
+    // const chunks = [];
+    // const reader = chatResponse.body.getReader();
+
+    // while (true) {
+    //     const { done, value } = await reader.read();
+    //     if (done) break;
+    //     chunks.push(value);
+    // }
+
+    // const responseText = new TextDecoder('utf-8').decode(
+    //     new Uint8Array(Buffer.concat(chunks))
+    // );
+
+    // const jsonResponse = JSON.parse(responseText);
+
+    // if (jsonResponse.choices.length === 0)
+    //     throw error(400, "No response from AI")
+
+
+    // return jsonResponse.choices[0].message.content
+
+
+    
 }
 
 

@@ -57,9 +57,9 @@ export async function getProductInfo( asin:string, country:string){
             "price",
             "rating",
             "ratings_total",
-            "reviews"
+            "feature_bullets",
+            // "reviews"
             // "specifications",
-            // "feature_bullets",
         ],
         // "categories": tempProduct["categories_flat"],
         // "description": tempProduct["description"],

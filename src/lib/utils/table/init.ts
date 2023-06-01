@@ -1,5 +1,33 @@
 import {error} from '@sveltejs/kit'
 
+
+// export async function convertNSaveTable(tableKey, productInfos){
+
+//     let tableData = convertToTableData(productInfos)
+
+
+//     const response = await fetch('/api/db/save-tableData', {
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         method: 'POST',
+//         body: JSON.stringify({
+//             tableKey,
+//             tableData,
+//         })
+//     });
+    
+//     if (!response.ok) {
+//         const data = await response.json();
+//         console.log(data)
+//         throw error(400, `failed to save table Data:${data.toString()}`);
+//     }
+// }
+
+
+
+
+
 export function convertToTableData(productInfos){
 
 

@@ -9,6 +9,7 @@
 
 
     function convertChatResponse(rawResponse:string, tableData){
+
         rawResponse = rawResponse.trim().replace(/(\r\n|\n|\r)/gm, "")
       
 
