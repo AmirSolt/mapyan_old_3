@@ -17,7 +17,7 @@
 	{#each Object.values(tableData) as colData}
 		<td class="text-center">
 			<a class="flex justify-center" href={colData.link} target="_blank" rel="noopener">
-				<ProductAvatar imageUrl={colData.image} size={24} />
+				<ProductAvatar imageUrl={colData.image} size={"w-24 h-24 md:w-40 md:h-40"}   />
 			</a>
 		</td>
 	{/each}
