@@ -2,7 +2,6 @@
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
 	import StarRating from '$lib/comp/general/product/StarRating.svelte';
 	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
-	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
 
 	export let isStreamed: boolean = true;
 	export let tableData: {};

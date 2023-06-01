@@ -8,11 +8,15 @@ import { getTokens } from '$lib/server/chatgpt/tokenizer'
 import { ChatGPTInstructions, ChatGPTTemprature } from '$lib/utils/config'
 import {error} from '@sveltejs/kit'
 
-
+import {MaxCompareProducts, MinCompareProducts} from '$lib/utils/config'
 
 export const POST = async ({request}) => {
 
     let {productInfos} = await request.json()
+
+    if(productInfos.length>MaxCompareProducts || productInfos.length<MinCompareProducts){
+        throw error(400, `Too many product infos were recived. productInfos.length:${productInfos.length}`)
+    }
 
 
     // ==================================================
