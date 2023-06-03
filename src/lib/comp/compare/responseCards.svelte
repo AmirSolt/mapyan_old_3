@@ -1,12 +1,10 @@
 <script lang="ts">
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
 	import StarRating from '$lib/comp/general/product/StarRating.svelte';
-	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
 
 	export let isStreamed: boolean = true;
 	export let tableData: {};
 	export let rawResponse: string;
-	let isLoading:boolean = true;
 
 	let splitterTotalCount = 0;
 	let results: [] = [];
@@ -15,7 +13,6 @@
 	$: if (isStreamed) results = convertStreamedChatResponse(results, rawResponse, tableData);
 	if (!isStreamed) results = convertStaticChatResponse(rawResponse, tableData);
 
-	$: if(results.length>0) isLoading = false 
 
 	function convertStreamedChatResponse(results: [], rawResponse: string, tableData) {
 		if (!rawResponse || rawResponse.length < 1) {
@@ -76,16 +73,7 @@
 
 
 
-{#if isLoading }
 
-	<div class="card flex justify-center items-center p-4">
-
-		<LoadingAnim />
-
-	</div>
-		
-
-{/if}
 
 
 

@@ -149,6 +149,14 @@
 	<hr />
 	<br />
 
+	{#if !(chatResponse && chatResponse.length>0) }
+		<div class="card flex justify-center items-center p-4">
+			<LoadingAnim />
+		</div>
+	{/if}
+
+
+
 	{#if chatResponse && compMounted}
 		<ResponseCards rawResponse={chatResponse} {tableData} {isStreamed}/>
 	{/if}

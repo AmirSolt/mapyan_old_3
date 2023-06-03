@@ -9,7 +9,7 @@
 			</h1>
 			<br>
 			<p class="text-3xl">
-				Thoroughly compare any products on Amazon, using AI.
+				Generate a comparison table for any Amazon products, using AI.
 			</p>
 		</div>
 		
