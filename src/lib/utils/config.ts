@@ -9,7 +9,7 @@ export const MinCompareProducts = 2;
 
 
 
-export const ChatGPTTemprature = 0.25 // lower more coherence, higher more creativity
+export const ChatGPTTemprature = 0.4 // lower more coherence, higher more creativity
 
 
 export const ChatGPTInstructions=`

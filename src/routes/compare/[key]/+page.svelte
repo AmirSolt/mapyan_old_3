@@ -124,7 +124,7 @@
 
 
 
-{#if !tableData }
+{#if !(chatResponse && chatResponse.length>0) }
 
 	<LoadingContainer >
 		<LoadingAnim />
