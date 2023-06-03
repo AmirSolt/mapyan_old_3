@@ -149,6 +149,8 @@
 	<hr />
 	<br />
 
+	{console.log("chatResponse",chatResponse)}
+
 	{#if !(chatResponse && chatResponse.length>0) }
 		<div class="card flex justify-center items-center p-4">
 			<LoadingAnim />
