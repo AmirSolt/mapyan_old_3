@@ -6,7 +6,7 @@
 	export let isStreamed: boolean = true;
 	export let tableData: {};
 	export let rawResponse: string;
-	let isLoading:boolean = false;
+	let isLoading:boolean = true;
 
 	let splitterTotalCount = 0;
 	let results: [] = [];
@@ -15,7 +15,7 @@
 	$: if (isStreamed) results = convertStreamedChatResponse(results, rawResponse, tableData);
 	if (!isStreamed) results = convertStaticChatResponse(rawResponse, tableData);
 
-	$: isLoading = isStreamed 
+	$: if(results.length>0) isLoading = false 
 
 	function convertStreamedChatResponse(results: [], rawResponse: string, tableData) {
 		if (!rawResponse || rawResponse.length < 1) {
@@ -106,25 +106,31 @@
 
 			<div class="flex flex-col justify-center items-start mx-4">
 				<!-- INFO -->
+				{#if item["brand"]}
 				<div class="">
 					<span>
 						Brand: {item.brand}
 					</span>
 				</div>
+				{/if}
 				<a class="" href={item.link} target="_blank" rel="noopener">
 					<span>
 						{truncate(item.title, 25)}
 					</span>
 				</a>
+				{#if item["rating"] && item["ratings_total"]}
 				<div class="flex justify-center items-center">
 					<StarRating rating={item.rating} starSize={4} />
 					<small class="mx-2">({item.ratings_total})</small>
 				</div>
+				{/if}
+				{#if item["price"]}
 				<div class="">
 					<span>
 						{item.price}
 					</span>
 				</div>
+				{/if}
 			</div>
 		</div>
 
