@@ -5,14 +5,12 @@
 	export let isStreamed: boolean = true;
 	export let tableData: {};
 	export let rawResponse: string;
-
 	let splitterTotalCount = 0;
 	let results: [] = [];
 
 
 	$: if (isStreamed) results = convertStreamedChatResponse(results, rawResponse, tableData);
 	if (!isStreamed) results = convertStaticChatResponse(rawResponse, tableData);
-
 
 	function convertStreamedChatResponse(results: [], rawResponse: string, tableData) {
 		if (!rawResponse || rawResponse.length < 1) {
@@ -80,6 +78,16 @@
 <h1 class="text-4xl m-4">Rankings:</h1>
 
 <br />
+
+
+
+{#if !isStreamed && splitterTotalCount<=0 && results.length<=0}
+	<div class="card variant-soft-error flex flex-col justify-center items-start gap-4 p-4">
+		<p>
+			Sorry, AI couldn't generate a comparison table this time. 
+		</p>
+	</div>
+{/if}
 
 {#each results as item, i}
 	<div class="card flex flex-col justify-center items-start gap-4 p-2">

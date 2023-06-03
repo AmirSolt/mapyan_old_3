@@ -11,8 +11,8 @@ export const getResponse = async (cleanInputProducts) => {
 
 
     const messages: ChatCompletionRequestMessage[] = [
-        { role: ChatCompletionRequestMessageRoleEnum.System, content:"Products: "+JSON.stringify(cleanInputProducts)},
-        { role: ChatCompletionRequestMessageRoleEnum.User, content: ChatGPTInstructions}
+        { role: ChatCompletionRequestMessageRoleEnum.System, content:ChatGPTInstructions},
+        { role: ChatCompletionRequestMessageRoleEnum.User, content:"Products: "+JSON.stringify(cleanInputProducts) }
     ]
 
     const chatResponse = getChatGPTResponse(messages)
