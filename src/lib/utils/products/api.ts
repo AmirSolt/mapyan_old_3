@@ -1,5 +1,7 @@
 import { error } from "@sveltejs/kit"
 import {searchedProducts, productInfos} from './stores'
+import { Toast, toastStore } from '@skeletonlabs/skeleton';
+import type { ToastSettings } from '@skeletonlabs/skeleton';
 
 export async function getSearchResults(keyword:string, country:string) {
     
@@ -31,7 +33,12 @@ export async function getSearchResults(keyword:string, country:string) {
         result = data.result
 
     }else{
-        throw error(400, "failed to fetch search data")
+        const data = await response.json()        
+        const t: ToastSettings = {
+            message: data.message,
+        };
+        toastStore.trigger(t);
+        
     }
 
 
@@ -77,7 +84,11 @@ export async function getProductInfo(asin:string, country:string) {
         result = data.result
 
     }else{
-        throw error(400, "failed to fetch product info data")
+        const data = await response.json()
+        const t: ToastSettings = {
+            message: data.message,
+        };
+        toastStore.trigger(t);
     }
 
 

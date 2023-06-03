@@ -7,7 +7,8 @@
 	import { userCountry } from '$lib/utils/stores';
 	import { destructTableKey } from '$lib/utils/schemas';
 	import {convertToTableData} from '$lib/utils/table/init'
-	import { error } from '@sveltejs/kit';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings } from '@skeletonlabs/skeleton';
 	import { SSE } from 'sse.js'
 	import { checkProductInfosStore, queryStoresProductInfo } from '$lib/utils/products/api';
 	export let data;
@@ -61,7 +62,10 @@
 		
 		if (!response.ok) {
 			const data = await response.json();
-			throw error(400, `failed to save table Data:${data.toString()}`);
+			const t: ToastSettings = {
+				message: data.message,
+			};
+			toastStore.trigger(t);
 		}
 	}
 

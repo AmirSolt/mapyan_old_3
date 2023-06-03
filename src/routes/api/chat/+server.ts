@@ -36,7 +36,8 @@ export const POST = async ({request}) => {
 
     // ========================TOKEN==========================
     if (!messages) {
-        throw new Error('no messages provided')
+        throw error(400, "No message were provided")
+
     }
 
     let tokenCount = 0

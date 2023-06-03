@@ -8,15 +8,8 @@ export const POST = async ({request}) => {
     let result:[] = []
 
 
-    throw error(400, "Test error")
 
-    try{
-        result = await getSearchResults(asin, country)
-    
-    }catch(err){
-        throw error(400, `Failed to fetch search: ${err}`)
-    }
-    
+    result = await getSearchResults(keyword, country)
 
     return json({
         result

@@ -3,7 +3,6 @@ import { PRIVATE_OPENAI_KEY } from '$env/static/private'
 import type { CreateChatCompletionRequest, ChatCompletionRequestMessage } from 'openai'
 import { ChatCompletionRequestMessageRoleEnum } from 'openai'
 import { getTokens } from './tokenizer'
-
 import { ChatGPTInstructions, ChatGPTTemprature } from '$lib/utils/config'
 import {error} from '@sveltejs/kit'
 
@@ -29,7 +28,7 @@ async function getChatGPTResponse(messages) {
 
     // =================== Validation ===================
     if (!messages) {
-        throw new Error('no messages provided')
+        throw error(400, "No message were provided")
     }
 
     let tokenCount = 0
