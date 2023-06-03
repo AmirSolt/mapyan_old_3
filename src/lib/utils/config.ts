@@ -9,16 +9,16 @@ export const MinCompareProducts = 2;
 
 
 
-export const ChatGPTTemprature = 0.5 // lower more coherence, higher more creativity
+export const ChatGPTTemprature = 0.25 // lower more coherence, higher more creativity
 
 
 export const ChatGPTInstructions=`
 Follow these instructions:
 - Act as a product reviewer
-- Try to be unbaised and professional.
+- Try to objectively compare multiple products.
 - Rank these products.
 - Explain your reasoning for ranking each one.
-- Also add some positive and negative traits of each product.
+- Also mention some positive and negative traits for each product.
 - Better product comes first.
 - For every product use this format: %[asin]% [why]
 - ONLY answer in this format: %[asin]% [why]
