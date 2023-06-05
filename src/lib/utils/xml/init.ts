@@ -8,6 +8,7 @@ export function convertXMLtoObj(xmlRaw:string){
     let cards:CompareCard[]=[];
     let converted = XMLConverter(xmlRaw)
 
+    console.log("converted",converted)
 
     converted.s.forEach((section:any) => {
         let card:CompareCard = {heading:section.f,
@@ -28,7 +29,6 @@ export function convertXMLtoObj(xmlRaw:string){
 function XMLConverter(xmlRaw:string){
     const parser = new XMLParser();
     let jObj = parser.parse(getXMLTemplate(xmlRaw));
-
     return jObj.body
 }
 

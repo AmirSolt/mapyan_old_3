@@ -18,8 +18,9 @@ export async function getSearchResults( keyword:string, country:string):Promise<
     }
     
     try{
-        let temp:any[] = fetchedSearchResults["search_results"]
-        result = temp.map((product:any)=>{            
+        let fetched:any[] = fetchedSearchResults["search_results"]??[]
+       
+        result = fetched.map((product:any)=>{            
             return {
                 asin: product.asin,
                 image: product.image??"",
@@ -28,7 +29,7 @@ export async function getSearchResults( keyword:string, country:string):Promise<
                 title: product.title??"Uknown",
                 rating: product.rating??-1,
                 ratings_total: product.ratings_total??-1,
-                prices: product.prices.map((temp:any)=>convertToPrice(temp)),
+                prices: Array.isArray(product.prices) ? product.prices.map((temp:any)=>convertToPrice(temp)) : [],
                 price: convertToPrice(product.price),
             }
         })
@@ -132,7 +133,7 @@ export async function getProductInfo( asin:string, country:string):Promise<Produ
 function convertToPrice(rawPrice:any):Price{
     let price:Price = {symbol:"$",value:-1,currency:"USD"};
 
-    if(rawPrice["symbol"]
+    if(rawPrice && rawPrice["symbol"]
         && rawPrice["value"]
         && rawPrice["currency"]){
             
