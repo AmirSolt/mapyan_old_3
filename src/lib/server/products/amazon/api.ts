@@ -5,43 +5,53 @@ const API_URL = 'https://api.asindataapi.com/request'
 
 
 
-export async function getSearchResults(keyword:string, domain:string){
-    let products:any[] = [];
+export async function getSearchResults(keyword:string, domain:string):Promise<any[]>{
+    let products:any[]=[];
     const url = addQueriesToURL(API_URL, getSearchQueries(keyword, domain));
-    await fetch(url, {
+    let response = await fetch(url, {
         method: 'GET',
-    }).then(
-        (response) => response.json()
-    ).then((data)=>{
-        if(!("search_results" in data)){
-            throw error(400, "No search_results key in returned data")
-        }
-        products=data
-    }).catch((err)=> {
-        throw error(400, `There was an error in amazon search: ${err}`)
     })
+    
+    if(response.ok){
+        let data = await response.json()
+
+        if(!("search_results" in data)){
+            console.log( "No search_results key in returned data")
+            throw error(400, "Something went wrong!")
+        }
+
+        products = data
+    }else{
+        let data = await response.json()
+        console.log(`There was an error in amazon search: ${data}`)
+        throw error(400, "Something went wrong!")
+    }
+ 
     return products
 }
 
 
 
-export async function getProductInfo(asin:string, domain:string){
+export async function getProductInfo(asin:string, domain:string):Promise<{}>{
 
     let product:any = {};
     const url = addQueriesToURL(API_URL, getProductQueries(asin, domain));
-    await fetch(url, {
-        method: 'GET',
-    }).then(
-        (response) => response.json()
-    ).then((data)=>{
 
-        if(!("product" in data)){
-            throw error(400, `[product] key does not exist in returned data`)
-        }
-        product = data
-    }).catch((err)=> {
-        throw error(400, `There was an error in fetching products: ${err}`)
+    let response = await fetch(url, {
+        method: 'GET',
     })
+    
+    if(response.ok){
+        let data = await response.json()
+
+        product = data
+    }else{
+        let data = await response.json()
+        console.log(`There was an error in Amazon getProductInfo : ${data}`)
+        throw error(400, "Something went wrong!")
+    }
+ 
+
 
 
     return product
@@ -49,28 +59,28 @@ export async function getProductInfo(asin:string, domain:string){
 
 
 
-export async function getReviews(asin:string, domain:string){
-    let reviews:any = {};
+// export async function getReviews(asin:string, domain:string){
+//     let reviews:any = {};
 
-    const url = addQueriesToURL(API_URL, getReviewQueries(asin, domain));
-    await fetch(url, {
-        method: 'GET',
-    }).then(
-        (response) => response.json()
-    ).then((data)=>{
+//     const url = addQueriesToURL(API_URL, getReviewQueries(asin, domain));
+//     await fetch(url, {
+//         method: 'GET',
+//     }).then(
+//         (response) => response.json()
+//     ).then((data)=>{
         
-        if(!("reviews" in data)){
+//         if(!("reviews" in data)){
             
-            throw error(400, `[reviews] key does not exist in returned data`)
-        }
+//             throw error(400, `[reviews] key does not exist in returned data`)
+//         }
         
-        reviews = data
+//         reviews = data
         
-    }).catch((err)=> {
-        throw error(400, `There was an error in fetching reviews: ${err}`)
-    })
-    return reviews
-}
+//     }).catch((err)=> {
+//         throw error(400, `There was an error in fetching reviews: ${err}`)
+//     })
+//     return reviews
+// }
 
 
 

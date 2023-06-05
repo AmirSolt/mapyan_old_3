@@ -3,11 +3,11 @@ import {searchedProducts, productInfos} from './stores'
 import { Toast, toastStore } from '@skeletonlabs/skeleton';
 import type { ToastSettings } from '@skeletonlabs/skeleton';
 
-export async function getSearchResults(keyword:string, country:string) {
+export async function getSearchResults(keyword:string, country:string):Promise<Product[]> {
     
 
-    const key = searchKey(keyword, country)
-    let result:[]=[];
+    const key:string = searchKey(keyword, country)
+    let result:Product[]=[];
 
     // Load from cache
     searchedProducts.subscribe((searchedResults)=>{
@@ -54,11 +54,11 @@ export async function getSearchResults(keyword:string, country:string) {
 
 
 
-export async function getProductInfo(asin:string, country:string) {
+export async function getProductInfo(asin:string, country:string):Promise<ProductInfo | null> {
     
 
-    const key = asinKey(asin, country)
-    let result:{} = {}
+    const key:string = asinKey(asin, country)
+    let result: ProductInfo | null = null;
 
     // Load from cache
     productInfos.subscribe((products)=>{
@@ -94,7 +94,8 @@ export async function getProductInfo(asin:string, country:string) {
 
     // Save to cache
     productInfos.update((products)=>{
-        products[key] = result
+        if(result)
+            products[key] = result
         return products
     })
 
@@ -131,9 +132,9 @@ export function queryStoresProductInfo(asin:string, country:string) {
 
 
 
-function searchKey(searchTerm:string, country:string){
+function searchKey(searchTerm:string, country:string):string{
     return `${country}/${searchTerm}`
 }
-function asinKey(asin:string, country:string){
+function asinKey(asin:string, country:string):string{
     return `${country}/${asin}`
 }

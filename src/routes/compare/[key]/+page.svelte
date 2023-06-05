@@ -3,11 +3,11 @@
 	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
 	import BarLoading from '$lib/comp/general/loading/BarLoading.svelte';
 	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
-	import ResponseCards from '$lib/comp/compare/responseCards.svelte';
+	import ResponseGrid from '$lib/comp/compare/ResponseGrid.svelte';
 	import { userCountry } from '$lib/utils/stores';
 	import { destructTableKey } from '$lib/utils/schemas';
 	import {convertToTableData} from '$lib/utils/table/init'
-	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
 	import { SSE } from 'sse.js'
 	import { checkProductInfosStore, queryStoresProductInfo } from '$lib/utils/products/api';
@@ -39,8 +39,9 @@
 			isProductInfosReady = true;
 			console.log("product infos loaded")
 
-			let productInfos = asins.map((asin) => queryStoresProductInfo(asin, $userCountry));
+			let productInfos:ProductInfo[] = asins.map((asin) => queryStoresProductInfo(asin, $userCountry));
 			
+
 			getTableData(productInfos);
 			getChatResponse(productInfos);
 		}
@@ -70,13 +71,14 @@
 	}
 
 	// ============== generates tabledata from prodocts and saves it ====================
-	function getTableData(productInfos) {
+	function getTableData(productInfos:ProductInfo[]) {
 		tableData = convertToTableData(productInfos)
+
 	}
 
 
 	// ============== streams chatgpt response ====================
-	async function getChatResponse(productInfos){
+	async function getChatResponse(productInfos:ProductInfo[]){
 
 		function handleError<T>(err: T) {
 			chatResponse = "Something went wrong!"
@@ -157,11 +159,12 @@
 	{/if}
 
 
-
-	{#if chatResponse && compMounted}
-		<ResponseCards rawResponse={chatResponse} {tableData} {isStreamed}/>
-	{/if}
-	<br>
-
 	<CompareTable {tableData} />
+
+	<br>
+	
+	{#if chatResponse && compMounted}
+		<ResponseGrid rawResponse={chatResponse} {tableData} {isStreamed}/>
+	{/if}
+
 {/if}

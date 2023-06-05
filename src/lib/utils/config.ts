@@ -9,21 +9,24 @@ export const MinCompareProducts = 2;
 
 
 
-export const ChatGPTTemprature = 0.4 // lower more coherence, higher more creativity
+export const ChatGPTTemprature = 0.5 // lower more coherence, higher more creativity
 
 
-export const ChatGPTInstructions=`
+export const ChatGPTInstructions = `
 Follow these instructions:
 - Act as a product reviewer.
 - Compare given products objectively.
-- Rank these products for the customer.
-- Explain your reasoning for ranking each one.
-- Your explanation should convey some positive and negative traits for each product.
-- Write a paragraph for each product, Better products come first.
-- You must use % to signify each asin, example: %AAAAAAAAAA%
-- Only respond in this format for each product: 
-    %[asin]%
-    [Why]
+- Come up with multiple features that all products have in common and compare them.
+- Come up with atleast 5 features.
+- Compare all products for each feature.
+- Use XML format.
+- Use <s> for section.
+- Use <f> for feature.
+- Use <i> for item.
+- Use <as> for asin.
+- Use <p> for paragraph.
+- Example for a topic with 3 shoe products to compare:
+<s><f> Some Feature </f><i><as>asin</as> <p>explanation product's feature or Unknow</p></i><i><as>asin</as> <p>explanation product's feature or Unknow</p></i>...</s>
 `
 
 

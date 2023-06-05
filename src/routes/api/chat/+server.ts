@@ -90,13 +90,16 @@ export const POST = async ({request}) => {
 
 
 
-function getAiProductInfos(productInfos){
-    return productInfos.map(product=>{
-        let r = {}
-        product.ai_keys.forEach(key=>{
-            r[key] = product[key]
-        })
-        return r
+function getAiProductInfos(productInfos:ProductInfo[]){
+    return productInfos.map((product:ProductInfo)=>{
+        return {
+            asin: product.asin,
+            title: product.title,
+            price: `${product.price.symbol}${product.price.value}`,
+            rating:  product.rating,
+            ratings_total: product.ratings_total,
+            feature_bullets: product.feature_bullets,
+        }
     })
 }
 

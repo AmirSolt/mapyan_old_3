@@ -4,7 +4,7 @@
     import SelectionBar from "$lib/comp/selection/SelectionBar.svelte";
     import Card from "./Card.svelte";
 
-	export let products:any[] = [];
+	export let products:Product[] = [];
 
     import {selectedProducts, userCountry} from '$lib/utils/stores'
     import {MaxCompareProducts} from '$lib/utils/config';
@@ -13,12 +13,12 @@
 
 
 
-    function productCallback(event){
+    function productCallback(event:any){
         const product = event.detail.product;
         addToSelected(product)
     }
 
-    function addToSelected(product){
+    function addToSelected(product:Product){
         selectedProducts.update((list)=>{
             if(list.length>=MaxCompareProducts){
                 return list;

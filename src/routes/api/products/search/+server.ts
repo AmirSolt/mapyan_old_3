@@ -5,7 +5,7 @@ import { error, json } from '@sveltejs/kit';
 export const POST = async ({request}) => {
 
     let {keyword, country} = await request.json()
-    let result:[] = []
+    let result:Product[] = []
 
 
 

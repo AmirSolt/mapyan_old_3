@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    export let product:any; 
+    export let product:Product; 
     import StarRating from "$lib/comp/general/product/StarRating.svelte";
     import {selectedProducts} from '$lib/utils/stores'
     import {MaxCompareProducts} from '$lib/utils/config';
@@ -48,42 +48,39 @@
         <div id="info">
         
             <br>
+
+            
             <!-- brand -->
             <div id="brand" class="row">
                 {#if 'brand' in product}
                 <small>{product.brand}</small>
                 {/if}
             </div>
+
+
             <!-- Title -->
             <div id="title" class="row">
                 <a href="{product.link}" id="media" target="_blank" rel="noopener">
                     <p  >{truncate(product.title, 100)}</p>
                 </a>    
             </div>
+
+
+
             <!-- Ratings -->
             <div id="review" class="row flex flex-col justify-center items-start">
                 <StarRating rating={product.rating} />
                 <small class="mx-2">({product.ratings_total})</small>
                 
             </div>
-            <!-- <br> -->
+
             <!-- Prices -->
-            <!-- check if product has prices -->
-            {#if 'prices' in product && product.prices.length > 0}
+            {#if product.prices.length > 0}
                 <div id="price" class="row">
 
                     <span class="text-2xl">
                         {product.prices[0].symbol}{product.prices[0].value}
                     </span>
-
-                    <!-- is_prime -->
-                    <!-- {#if product.prices[0].is_prime}
-					<span class="text-blue-500">
-						<Check />
-					</span>
-					{:else}
-						-
-					{/if} -->
 
                     {#if product.prices.length > 2}
                         <s>
