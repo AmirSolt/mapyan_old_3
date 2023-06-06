@@ -27,9 +27,9 @@
 
 
     {#if 
-        'title' in product &&
-        "rating" in product &&
-        "ratings_total" in product
+        product.title &&
+        product.image &&
+        product.link
         }
 
     <div id="product_card"  class=" flex flex-col  justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 "> 
@@ -52,7 +52,7 @@
             
             <!-- brand -->
             <div id="brand" class="row">
-                {#if 'brand' in product}
+                {#if product.brand}
                 <small>{product.brand}</small>
                 {/if}
             </div>
@@ -68,11 +68,15 @@
 
 
             <!-- Ratings -->
+            {#if product.rating && 
+                typeof product.rating == 'number' && 
+                product.ratings_total}
             <div id="review" class="row flex flex-col justify-center items-start">
                 <StarRating rating={product.rating} />
                 <small class="mx-2">({product.ratings_total})</small>
                 
             </div>
+            {/if}
 
             <!-- Prices -->
             {#if product.prices.length > 0}
@@ -82,9 +86,9 @@
                         {product.prices[0].symbol}{product.prices[0].value}
                     </span>
 
-                    {#if product.prices.length > 2}
+                    {#if product.prices.length > 1}
                         <s>
-                            {product.price[1].symbol}{product.price[1].value}
+                            {product.prices[1].symbol}{product.prices[1].value}
                         </s>
                     {/if}
 

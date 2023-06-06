@@ -2,19 +2,19 @@
 
 	import ResponseCard from "./ResponseCard.svelte";
 	import {convertXMLtoObj} from '$lib/utils/xml/init'
+	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
 
-	export let isStreamed: boolean = true;
+	export let isStreaming: boolean = true;
 	export let tableData:{[key:string]:CompactProductInfo};
 	export let rawResponse: string='';
 
-	const closeRegex:RegExp =  /<\/[s]>/g
+	const closeRegex:RegExp =  /<\/[i, f]>/g
 	let closeCount:number = 0;
-	// const closeCountMargin = 4;
 
 	let cards:CompareCard[] = []
 	
-	$: if (!isStreamed) cards = convertXMLtoObj(rawResponse)
-	$: if(isStreamed) streamedConverter(rawResponse)
+	$: if (!isStreaming) cards = convertXMLtoObj(rawResponse)
+	$: if(isStreaming) streamedConverter(rawResponse)
 	
 	
 	function streamedConverter(streamedResponse:string){
@@ -22,7 +22,6 @@
 		if(matches.length > closeCount  ){
 
 			let inputXML = streamedResponse.slice(0, matches.at(-1))
-			console.log(inputXML)
 			cards = convertXMLtoObj(inputXML)
 
 			closeCount = matches.length
@@ -45,13 +44,15 @@
 
 
 
-<h1 class="text-4xl m-4">Comparison Table:</h1>
 
-<br />
 
 {#each cards as card}
 	<ResponseCard {card} {tableData} />
 {/each}
 
 
-
+{#if isStreaming }
+	<div class="card flex justify-center items-center p-4">
+		<LoadingAnim />
+	</div>
+{/if}

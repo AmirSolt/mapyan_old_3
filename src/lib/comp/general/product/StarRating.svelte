@@ -3,8 +3,11 @@
     export let rating:number = 0;
     export let starSize:number = 5;
 
+
 </script>
 
+
+{#if rating>0 && rating<=5}
 
 <div class="flex items-center">
 
@@ -17,3 +20,4 @@
     {/each}
     <span>{rating}</span>
  </div>
+{/if}

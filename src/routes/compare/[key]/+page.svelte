@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CompareTable from '$lib/comp/compare/compareTable/CompareTable.svelte';
+	import CompareTable from '$lib/comp/compare/CompareTable.svelte'
 	import LoadingAnim from '$lib/comp/general/loading/LoadingAnim.svelte';
 	import BarLoading from '$lib/comp/general/loading/BarLoading.svelte';
 	import LoadingContainer from '$lib/comp/general/loading/LoadingContainer.svelte';
@@ -15,7 +15,7 @@
 	let { chatResponse, tableKey, tableData } = data;
 	const { asins } = destructTableKey(tableKey);
 	let isProductInfosReady: boolean = false;
-	let isStreamed:boolean = true;
+	let isStreaming:boolean = true;
 	let compMounted:boolean = false;
 
 	import { onMount } from 'svelte';
@@ -24,7 +24,7 @@
 	onMount(async () => {
 		compMounted = true;
 		if(chatResponse && chatResponse.length>0){
-			isStreamed = false
+			isStreaming = false
 		}else{
 			awaitProductInfos();
 		}
@@ -97,7 +97,7 @@
 			try {
 				if (e.data === '[DONE]') {
 					saveCompare()
-					isStreamed = false
+					isStreaming = false
 					return
 				}
 				
@@ -152,19 +152,13 @@
 	<br />
 
 
-	{#if !(chatResponse && chatResponse.length>0) }
-		<div class="card flex justify-center items-center p-4">
-			<LoadingAnim />
-		</div>
-	{/if}
-
 
 	<CompareTable {tableData} />
 
 	<br>
 	
 	{#if chatResponse && compMounted}
-		<ResponseGrid rawResponse={chatResponse} {tableData} {isStreamed}/>
+		<ResponseGrid rawResponse={chatResponse} {tableData} {isStreaming}/>
 	{/if}
 
 {/if}
