@@ -143,22 +143,36 @@
 	</LoadingContainer>
 
 {:else}
-	<p class="text-sm">
+	<p class="text-sm badge variant-soft-warning p-4 rounded-lg mb-2">
 		*This information has been generated with the help of AI, and has not been confirmed by a human.
 	</p>
+	
 
 	<br />
 	<hr />
 	<br />
+	<br />
 
 
+	<h1 class="text-4xl md:text-5xl badge variant-soft-primary my-2 p-4 rounded-lg">Summary Table:</h1>
+	<br>
 
-	<CompareTable {tableData} />
+	<div class="">
+		<CompareTable {tableData} />
+	</div>
 
 	<br>
-	
-	{#if chatResponse && compMounted}
-		<ResponseGrid rawResponse={chatResponse} {tableData} {isStreaming}/>
-	{/if}
+	<br>
+	<br>
+	<br>
+
+
+	<h1 class="text-4xl md:text-5xl badge variant-soft-primary my-2 p-4 rounded-lg">Comparison Table:</h1>
+	<br>
+	<div class="">
+		{#if chatResponse && compMounted}
+			<ResponseGrid rawResponse={chatResponse} {tableData} {isStreaming}/>
+		{/if}
+	</div>
 
 {/if}

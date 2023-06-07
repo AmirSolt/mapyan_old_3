@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { X } from 'lucide-svelte';
 	import ProductAvatar from '$lib/comp/general/product/ProductAvatar.svelte';
-        import { ProgressRadial } from '@skeletonlabs/skeleton';
+	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { selectedProducts, userCountry } from '$lib/utils/stores';
 	function removeCompareProduct(product) {
         selectedProducts.update((list) => {
@@ -54,21 +54,33 @@
 		
 		<div class="">
 			<div class="flex justify-center items-center h-16 md:h-20">
-				{#each $selectedProducts as product}
-					<button
-						id="compare-button"
-						class="relative m-2 md:m-4"
-						on:click={() => removeCompareProduct(product)}
-					>
-						<!-- <img class="max-w-full max-h-full rounded-lg" src="{product.image}" alt="Thumbnail"> -->
-						<ProductAvatar imageUrl={product.image} size={"w-16 h-16 md:w-24 md:h-24"}  />
-						<div class="absolute z-10 right-0 top-0 variant-filled rounded-full drop-shadow-2xl">
-							<span>
-								<X />
-							</span>
-						</div>
-					</button>
+
+				{#each Array(MaxCompareProducts) as _, i}
+
+					{#if i < $selectedProducts.length}
+						<button
+							id="compare-button"
+							class="relative m-2 md:m-4"
+							on:click={() => removeCompareProduct($selectedProducts[i])}
+						>
+							<!-- <img class="max-w-full max-h-full rounded-lg" src="{product.image}" alt="Thumbnail"> -->
+							<ProductAvatar imageUrl={$selectedProducts[i].image} size={"w-16 h-16 md:w-24 md:h-24"}  />
+							<div class="absolute z-10 right-0 top-0 variant-filled rounded-full drop-shadow-2xl">
+								<span>
+									<X />
+								</span>
+							</div>
+						</button>
+					{:else}
+
+						<button class="btn m-2 md:m-4 variant-ringed rounded-lg w-16 h-16 md:w-24 md:h-24"  disabled> - </button>
+
+					{/if}
+
+
 				{/each}
+
+
 			</div>
 		</div>
 	

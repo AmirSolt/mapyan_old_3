@@ -32,7 +32,7 @@
         product.link
         }
 
-    <div id="product_card"  class=" flex flex-col  justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4 "> 
+    <div id="product_card"  class=" flex flex-col  justify-between  card drop-shadow-md !bg-transparent rounded-lg p-2 md:p-4"> 
 
 
         <!-- Media -->
@@ -45,7 +45,7 @@
         </header>
         
 
-        <div id="info">
+        <div id="info" class="flex flex-col gap-1">
         
             <br>
 
@@ -77,6 +77,7 @@
                 
             </div>
             {/if}
+
 
             <!-- Prices -->
             {#if product.prices.length > 0}
