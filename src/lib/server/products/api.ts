@@ -20,7 +20,7 @@ export async function getSearchResults( keyword:string, country:string):Promise<
     try{
         let fetched:any[] = fetchedSearchResults["search_results"]??[]
        
-        result = fetched.map((product:any)=>{            
+        result = fetched.map((product:any)=>{   
             return {
                 asin: product.asin,
                 image: product.image??"",

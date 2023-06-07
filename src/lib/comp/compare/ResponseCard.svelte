@@ -22,9 +22,17 @@
 		<div class="card variant-soft flex justify-start p-2 items-center w-full">
 
 			<!-- product Image and title -->
-			<div class="flex flex-col justify-center items-center p-2 w-20 md:w-28 border-e-2">
+			{#if 
+				item
+				&& item.asin 
+				&& tableData[item.asin]
+				&& tableData[item.asin].link
+				&& tableData[item.asin].image
+				&& tableData[item.asin].title
+				 }
+			<div class="flex flex-col justify-center items-center p-2 w-28 md:w-36 border-e-2">
 				<a class="" href={tableData[item.asin].link} target="_blank" rel="noopener">
-					<ProductAvatar imageUrl={tableData[item.asin].image} size={'w-16 h-16 md:w-24 md:h-24'} />
+					<ProductAvatar imageUrl={tableData[item.asin].image} size={'w-24 h-24 md:w-32 md:h-32'} />
 				</a>
 		
 				<a class="" href={tableData[item.asin].link} target="_blank" rel="noopener">
@@ -33,13 +41,26 @@
 					</span>
 				</a>
 			</div>
+			{:else}
+				<p class='variant-soft-error'>
+					N/A
+				</p>
+			{/if}
+
+
 		
 			<!-- Paragraph -->
+			{#if item && item.paragraph}
 			<div class="p-4">
 				<p>
 					{item.paragraph}
 				</p>
 			</div>
+			{:else}
+				<p class='variant-soft-error'>
+					Something went wrong!
+				</p>
+			{/if}
 
 		</div>
 	{/each}

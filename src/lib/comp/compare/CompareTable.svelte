@@ -21,6 +21,12 @@
 			</thead>
 		<tbody>
 			{#each Object.values(tableData) as colData}
+				{#if 
+					colData &&
+					colData.link &&
+					colData.title &&
+					colData.image
+					}
 				<tr>
 						<td class="text-center">
 							<a class="flex justify-center items-center text-center" href={colData.link} target="_blank" rel="noopener">
@@ -55,6 +61,7 @@
 							</div>
 						</td>
 				</tr>
+				{/if}
 			{/each}
 		</tbody>
 
